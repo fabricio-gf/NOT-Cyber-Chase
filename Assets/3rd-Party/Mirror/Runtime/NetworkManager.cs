@@ -50,6 +50,8 @@ namespace Mirror
 
         public static List<Transform> startPositions = new List<Transform>();
 
+        public GameObject overPanel;
+
         [NonSerialized]
         public bool clientLoadedScene;
 
@@ -496,7 +498,7 @@ namespace Mirror
                 loadSceneMode = sceneMode,
                 localPhysicsMode = physicsMode,
             });
-            networkSceneName = newSceneName; //This should probably not change if additive is used          
+            networkSceneName = newSceneName; //This should probably not change if additive is used
         }
 
         void FinishLoadScene()
@@ -769,6 +771,8 @@ namespace Mirror
                 {
                     ClientScene.AddPlayer();
                 }
+                Debug.Log("asd");
+                overPanel.SetActive(true);
             }
         }
 
