@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [Header("Parameters")]
-    [Range(1,4)]public int playerNumber;
+    [Range(0,3)]public int playerNumber;
 
     [Space(10)]
     public int shotLevel;
@@ -38,12 +38,13 @@ public class Player : MonoBehaviour
     {
         if (shotLevel < maxShotLevel)
         {
+            PointsTracker.instance.UpdatePoints(PointsLookupTable.instance.FetchPointValue("GetShot"), playerNumber);
             shotLevel++;
             GetComponent<AutoShoot>().ChangeFormation(formations[shotLevel]);
         }
         else
         {
-            //addmorepoints
+            PointsTracker.instance.UpdatePoints(PointsLookupTable.instance.FetchPointValue("GetShotFull"), playerNumber);
         }
     }
 
@@ -51,12 +52,13 @@ public class Player : MonoBehaviour
     {
         if (!hasShield)
         {
+            PointsTracker.instance.UpdatePoints(PointsLookupTable.instance.FetchPointValue("GetShield"), playerNumber);
             shieldObject.SetActive(true);
             //play sfx
         }
         else
         {
-            //addmorepoints
+            PointsTracker.instance.UpdatePoints(PointsLookupTable.instance.FetchPointValue("GetShieldFull"), playerNumber);
         }
     }
 
@@ -64,11 +66,13 @@ public class Player : MonoBehaviour
     {
         if (lives < maxLives)
         {
+            PointsTracker.instance.UpdatePoints(PointsLookupTable.instance.FetchPointValue("GetLife"), playerNumber);
             lives++;
+            GUIManager.instance.ChangeLife(playerNumber, lives);
         }
         else
         {
-            //addmorepoints
+            PointsTracker.instance.UpdatePoints(PointsLookupTable.instance.FetchPointValue("GetLifeFull"), playerNumber);
         }
     }
 
@@ -84,13 +88,15 @@ public class Player : MonoBehaviour
             if(lives > 1)
             {
                 lives--;
-                //update UI
+                //spawn explosion
+                //request new spawn
+                GUIManager.instance.ChangeLife(playerNumber, lives);
+                Destroy(gameObject);
             }
             else
             {
                 //spawn explosion
-                //update UI
-                //request new spawn
+                GUIManager.instance.ChangeLife(playerNumber, lives);
                 Destroy(gameObject);
             }
         }
@@ -100,11 +106,13 @@ public class Player : MonoBehaviour
     {
         if (bombs < maxBombs)
         {
+            PointsTracker.instance.UpdatePoints(PointsLookupTable.instance.FetchPointValue("GetBomb"), playerNumber);
             bombs++;
+            GUIManager.instance.ChangeBombs(playerNumber, bombs);
         }
         else
         {
-            //addmorepoints
+            PointsTracker.instance.UpdatePoints(PointsLookupTable.instance.FetchPointValue("GetBombFull"), playerNumber);
         }
     }
 
@@ -112,8 +120,10 @@ public class Player : MonoBehaviour
     {
         if (bombs > 0)
         {
+            PointsTracker.instance.UpdatePoints(PointsLookupTable.instance.FetchPointValue("UseBomb"), playerNumber);
             bombs--;
-            //use bomb
+            //spawn bomb
+            GUIManager.instance.ChangeBombs(playerNumber, bombs);
         }
         else
         {

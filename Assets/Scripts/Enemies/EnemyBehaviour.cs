@@ -17,6 +17,7 @@ public class EnemyBehaviour : MonoBehaviour
             else
             {
                 //spawn explosion
+
                 FindObjectOfType<PowerupSpawner>().CheckPowerupSpawn(transform.position);
                 Destroy(gameObject);
             }

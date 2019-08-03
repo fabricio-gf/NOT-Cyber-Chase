@@ -69,7 +69,7 @@ TrailRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Time: 0.3
   m_Parameters:
     serializedVersion: 3
@@ -196,7 +196,7 @@ TrailRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Time: 0.3
   m_Parameters:
     serializedVersion: 3
@@ -404,7 +404,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_Sprite: {fileID: -3504132986953989624, guid: 1aca129bbe70764489defe976bed9bd7,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -471,17 +471,17 @@ MonoBehaviour:
   maxShotLevel: 3
   formations:
   - positions: []
-    directions: []
+    velocities: []
   - positions: []
-    directions: []
+    velocities: []
   - positions: []
-    directions: []
+    velocities: []
   hasShield: 0
   bombs: 1
   maxBombs: 3
   lives: 1
   maxLives: 3
-  shieldPrefab: {fileID: 0}
+  shieldObject: {fileID: 0}
   bombPrefab: {fileID: 0}
 --- !u!114 &599953267302665961
 MonoBehaviour:
