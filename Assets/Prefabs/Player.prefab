@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: -307433172042515530}
   - component: {fileID: 8870486199432019840}
   - component: {fileID: 599953267302665961}
+  - component: {fileID: 7265424509960910088}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -94,8 +95,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec93581eab968864e8430e493c685daf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shotLevel: 0
-  maxShotLevel: 0
+  playerNumber: 1
+  shotLevel: 1
+  maxShotLevel: 3
   formations:
   - positions: []
     directions: []
@@ -104,11 +106,10 @@ MonoBehaviour:
   - positions: []
     directions: []
   hasShield: 0
-  bombs: 0
-  maxBombs: 0
-  lives: 0
-  maxLives: 0
-  shotPrefab: {fileID: 0}
+  bombs: 1
+  maxBombs: 3
+  lives: 1
+  maxLives: 3
   shieldPrefab: {fileID: 0}
   bombPrefab: {fileID: 0}
 --- !u!114 &599953267302665961
@@ -127,3 +128,26 @@ MonoBehaviour:
   VerticalSpeed: 7
   HorizontalSpeed: 4
   isMoving: 0
+--- !u!114 &7265424509960910088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8870486199432019841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b0cf2d549805244abfa9bab17b65854, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shootRate: 1
+  shootMultiplier: 0
+  spawnPositions:
+  - {x: 0.5, y: 1, z: 0}
+  - {x: -0.5, y: 1, z: 0}
+  velocities:
+  - {x: 0, y: 1, z: 0}
+  - {x: 0, y: 1, z: 0}
+  bulletPrefab: {fileID: 2132441585073479617, guid: 3c60cc227e0772549897ab819d0ae58c,
+    type: 3}
+  bulletsParent: {fileID: 0}

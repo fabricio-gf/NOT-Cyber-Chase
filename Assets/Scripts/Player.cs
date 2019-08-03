@@ -5,6 +5,9 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [Header("Parameters")]
+    [Range(1,4)]public int playerNumber;
+
+    [Space(10)]
     public int shotLevel;
     public int maxShotLevel;
     [Space(10)]
@@ -22,7 +25,6 @@ public class Player : MonoBehaviour
     public int maxLives;
 
     [Header("References")]
-    public GameObject shotPrefab;
     public GameObject shieldPrefab;
     public GameObject bombPrefab;
 
