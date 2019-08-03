@@ -1,18 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using TMPro;
 using UnityEngine;
 
 public class PointsTracker : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public int[] points;
+    public TextMeshProUGUI[] pointsTexts;
 
-    // Update is called once per frame
-    void Update()
+    public void UpdatePoints(int change, int index)
     {
-        
+        points[index] += change;
+        pointsTexts[index].text = points[index].ToString();
     }
 }
