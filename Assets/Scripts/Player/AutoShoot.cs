@@ -47,4 +47,10 @@ public class AutoShoot : MonoBehaviour
             }
         }
     }
+
+    public void ChangeFormation(Player.ShotFormation newFormation)
+    {
+        spawnPositions = newFormation.positions;
+        velocities = newFormation.velocities;
+    }
 }

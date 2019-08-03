@@ -6,6 +6,8 @@ public class Powerup : MonoBehaviour
     public float maxVelocity;
     public float minVelocity;
 
+    public float moveSpeed;
+
     public PowerupType myType;
 
     public enum PowerupType
@@ -29,6 +31,7 @@ public class Powerup : MonoBehaviour
     void Update()
     {
         transform.Rotate(new Vector3(0, 0, 1), angularVelocity);
+        transform.Translate(Vector3.down*moveSpeed*Time.deltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

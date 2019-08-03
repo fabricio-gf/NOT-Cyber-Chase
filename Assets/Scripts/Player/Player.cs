@@ -25,13 +25,13 @@ public class Player : MonoBehaviour
     public int maxLives;
 
     [Header("References")]
-    public GameObject shieldPrefab;
+    public GameObject shieldObject;
     public GameObject bombPrefab;
 
     [System.Serializable] public struct ShotFormation
     {
         public Vector3[] positions;
-        public Vector3[] directions;
+        public Vector3[] velocities;
     }
 
     public void IncrementShotLevel()
@@ -39,6 +39,7 @@ public class Player : MonoBehaviour
         if (shotLevel < maxShotLevel)
         {
             shotLevel++;
+            GetComponent<AutoShoot>().ChangeFormation(formations[shotLevel]);
         }
         else
         {
@@ -50,7 +51,20 @@ public class Player : MonoBehaviour
     {
         if (!hasShield)
         {
-            //spawnshield
+            shieldObject.SetActive(true);
+            //play sfx
+        }
+        else
+        {
+            //addmorepoints
+        }
+    }
+
+    public void AddLife()
+    {
+        if (lives < maxLives)
+        {
+            lives++;
         }
         else
         {
@@ -62,7 +76,23 @@ public class Player : MonoBehaviour
     {
         if (hasShield)
         {
-            //destroyShield 
+            shieldObject.SetActive(false);
+            //play sfx
+        }
+        else
+        {
+            if(lives > 1)
+            {
+                lives--;
+                //update UI
+            }
+            else
+            {
+                //spawn explosion
+                //update UI
+                //request new spawn
+                Destroy(gameObject);
+            }
         }
     }
 
@@ -78,15 +108,25 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void AddLife()
+    public void UseBomb()
     {
-        if(lives < maxLives)
+        if (bombs > 0)
         {
-            lives++;
+            bombs--;
+            //use bomb
         }
         else
         {
-            //addmorepoints
+            //play no bomb sfx
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("EnemyProjectile"))
+        {
+            Destroy(collision.gameObject);
+            TakeDamage();
         }
     }
 }

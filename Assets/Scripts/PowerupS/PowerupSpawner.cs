@@ -10,7 +10,7 @@ public class PowerupSpawner : MonoBehaviour
 
     float spawnRate;
 
-    void CheckPowerupSpawn(Vector3 position)
+    public void CheckPowerupSpawn(Vector3 position)
     {
         if(Random.value <= spawnRate)
         {

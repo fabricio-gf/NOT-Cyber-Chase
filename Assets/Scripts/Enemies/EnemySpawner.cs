@@ -7,7 +7,7 @@ public class EnemySpawner : MonoBehaviour
     public Vector3[] spawnPositions;
     public GameObject[] enemies;
 
-    public Transform grid;
+    public Transform enemyParent;
     public float spawnRate;
     public float difficultyMultiplier;
     public bool canSpawn = false;
@@ -30,7 +30,7 @@ public class EnemySpawner : MonoBehaviour
             {
                 randomIndex = Random.Range(0, enemies.Length);
 
-                Instantiate(enemies[randomIndex], spawnPositions[Random.Range(0, spawnPositions.Length)], Quaternion.identity, grid);
+                Instantiate(enemies[randomIndex], spawnPositions[Random.Range(0, spawnPositions.Length)], Quaternion.identity, enemyParent);
                 currentTime += spawnRate;
             }
         }
