@@ -13,9 +13,14 @@ public class MatchManager : MonoBehaviour
     public EnemySpawner enemySpawner;
     public PointsTracker pointsTracker;
 
-    public void Start()
+    private void Awake()
     {
-        
+        //get connected players
+    }
+
+    private void Start()
+    {
+        playerReferences = playerSpawner.SpawnPlayers(connectedPlayers);
     }
 
     public void StartCountdown()
