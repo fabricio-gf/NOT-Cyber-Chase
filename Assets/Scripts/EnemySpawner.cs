@@ -5,22 +5,47 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     public Vector3[] spawnPositions;
-
     public GameObject[] enemies;
 
-    public float spawnDelay;
-
+    public Transform grid;
+    public float spawnRate;
     public float difficultyMultiplier;
+    public bool canSpawn = false;
 
-    // Start is called before the first frame update
-    void Start()
+    float currentTime;
+    int randomIndex;
+
+    private void Start()
     {
-        
+        currentTime = spawnRate;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (canSpawn)
+        {
+            currentTime -= Time.deltaTime;
+
+            if(currentTime <= 0)
+            {
+                randomIndex = Random.Range(0, enemies.Length);
+
+                Instantiate(enemies[randomIndex], spawnPositions[Random.Range(0, spawnPositions.Length)], Quaternion.identity, grid);
+                currentTime += spawnRate;
+            }
+        }
+    }
+
+    public void TriggerSpawn(bool trigger)
+    {
+        canSpawn = trigger;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.green;
+        for (int i = 0; i < spawnPositions.Length; i++) {
+            Gizmos.DrawWireCube(spawnPositions[i], new Vector3(1, 1, 0));
+        }
     }
 }
