@@ -20,6 +20,8 @@ public class AutoShoot : MonoBehaviour
 
     GameObject obj;
 
+    public bool canShoot = false;
+
     private void Start()
     {
         currentTime = shootRate;
@@ -28,18 +30,21 @@ public class AutoShoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(currentTime <= 0)
+        if (canShoot)
         {
-            for(int i = 0; i < spawnPositions.Length; i++)
+            if (currentTime <= 0)
             {
-                obj = Instantiate(bulletPrefab, transform.position + spawnPositions[i], Quaternion.identity, bulletsParent);
-                obj.GetComponent<Rigidbody2D>().velocity = velocities[i];
+                for (int i = 0; i < spawnPositions.Length; i++)
+                {
+                    obj = Instantiate(bulletPrefab, transform.position + spawnPositions[i], Quaternion.identity, bulletsParent);
+                    obj.GetComponent<Rigidbody2D>().velocity = velocities[i];
+                }
+                currentTime = shootRate;
             }
-            currentTime = shootRate;
-        }
-        else
-        {
-            currentTime -= Time.deltaTime;
+            else
+            {
+                currentTime -= Time.deltaTime;
+            }
         }
     }
 }

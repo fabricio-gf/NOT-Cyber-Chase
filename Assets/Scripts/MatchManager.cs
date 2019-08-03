@@ -11,7 +11,11 @@ public class MatchManager : MonoBehaviour
     GameObject[] playerReferences;
 
     public EnemySpawner enemySpawner;
-    public PointsTracker pointsTracker;
+    public GUIManager guiManager;
+    public Countdown countdownScript;
+
+    public delegate void MatchManagerDelegate();
+    public MatchManagerDelegate OnGameStart;
 
     private void Awake()
     {
@@ -21,22 +25,21 @@ public class MatchManager : MonoBehaviour
     private void Start()
     {
         playerReferences = playerSpawner.SpawnPlayers(connectedPlayers);
+        guiManager.ActivatePlayerInfos(connectedPlayers);
+
+        OnGameStart += StartMatch;
+        countdownScript.StartCountdown();
     }
 
-    public void StartCountdown()
+    public void StartMatch()
     {
-        //player spawn animation
-        //toggle points trackers
+        OnGameStart -= StartMatch;
+        //enemySpawner.canSpawn = true;
 
-        //start countdown
-
-        //on end, match start
-    }
-
-    public void OnMatchStart()
-    {
-        //start enemy spawns
-        //allow inputs
-        //start auto shooting
+        for(int i = 0; i < playerReferences.Length; i++)
+        {
+            //allow inputs
+            playerReferences[i].GetComponent<AutoShoot>().canShoot = true;
+        }
     }
 }
