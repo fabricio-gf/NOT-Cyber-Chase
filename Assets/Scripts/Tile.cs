@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-    public Transform upTile;
-    public Transform downTile;
-    public Transform leftTile;
-    public Transform rightTile;
+    public Tile upTile;
+    public Tile rightTile;
+    public Tile downTile;
+    public Tile leftTile;
 
     public bool occupied;
 
