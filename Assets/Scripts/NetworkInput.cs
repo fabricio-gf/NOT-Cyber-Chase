@@ -7,7 +7,7 @@ using Mirror;
 public class NetworkInput : NetworkBehaviour
 {
 
-    public int inputState = 0; //
+    public InputType inputState = 0; //
 
     [SyncVar]
     public string Name;
@@ -24,8 +24,17 @@ public class NetworkInput : NetworkBehaviour
         base.OnStartServer();
         if(!isLocalPlayer){
             //Talvez issu não seja função do networkInput (comment by cartaz)
-            Instantiate(spaceShip, new Vector3(0,0,0), Quaternion.identity);
+            //Instantiate(spaceShip, new Vector3(0,0,0), Quaternion.identity);
             name = Name;
+        }
+    }
+
+    void LateUpdate() {
+        if (!isLocalPlayer) {
+            if(inputState != 0){
+                inputState = 0;
+            }
+            return;
         }
     }
 
@@ -34,7 +43,10 @@ public class NetworkInput : NetworkBehaviour
             return;
         }
         if(Input.GetKey(KeyCode.W)){
-            CmdUpdateState((int)InputType.Up);
+            CmdUpdateState(InputType.Up);
+        }
+        if(Input.GetKey(KeyCode.S)){
+            CmdUpdateState(InputType.Down);
         }
         if(Input.touchCount < 1)
             return;
@@ -50,18 +62,18 @@ public class NetworkInput : NetworkBehaviour
                 float dy = endTouchPosition.y-beginTouchPosition.y;
                 if(Mathf.Abs(dx) > Mathf.Abs(dy)){
                     if(dx > 0) {
-                        CmdUpdateState((int)InputType.Right);
+                        CmdUpdateState(InputType.Right);
                     }
                     else {
-                        CmdUpdateState((int)InputType.Left);
+                        CmdUpdateState(InputType.Left);
                     }
                 }
                 else{
                     if(dy > 0) {
-                        CmdUpdateState((int)InputType.Up);
+                        CmdUpdateState(InputType.Up);
                     }
                     else {
-                        CmdUpdateState((int)InputType.Down);
+                        CmdUpdateState(InputType.Down);
                     }
                 }
             }
@@ -70,7 +82,7 @@ public class NetworkInput : NetworkBehaviour
     }
 
         [Command]
-    void CmdUpdateState(int newState)
+    void CmdUpdateState(InputType newState)
     {
         inputState = newState;
     }
