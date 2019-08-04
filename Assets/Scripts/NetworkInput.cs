@@ -1,14 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Mirror;
 
 public class NetworkInput : NetworkBehaviour
 {
 
+    [SerializeField]
+    GameObject LobbyRoom;
     public InputType inputState = InputType.None; //
 
     public string Name;
+
+    [SyncVar]
+    public int changeScene;
 
     [SerializeField]
     GameObject spaceShip;
@@ -32,11 +38,24 @@ public class NetworkInput : NetworkBehaviour
 
     }
 
+    public override void OnStartClient(){
+        GameObject.Find("Join Room").SetActive(false);
+    }
+
+    public void JoinRoom(){
+        GameObject.Find("Join Room").SetActive(true);
+    }
 
     void Update() {
         if (!isLocalPlayer) {
             return;
         }
+
+        if(changeScene == 1){
+             SceneManager.LoadScene("ClientPlay");
+             changeScene = 0;
+        }
+
         if(Input.GetKey(KeyCode.W)){
             CmdUpdateState(InputType.Up);
         }

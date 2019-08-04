@@ -51,7 +51,7 @@ public class InputManager : MonoBehaviour {
     void Start() {
 
     }
-    
+
 
     public void ConnectPlayer(int index, PlayerController controller)
     {
@@ -111,7 +111,6 @@ public class InputManager : MonoBehaviour {
     public void StartGame()
     {
         inlobby = false;
-        //change scene
     }
 
     enum InputSourceType {
@@ -204,7 +203,7 @@ public abstract class PlayerController {
 }
 
 public class LanController : PlayerController {
-    NetworkInput myConnection;
+    public NetworkInput myConnection;
 
     public LanController(NetworkInput connection) {
         myConnection = connection;
