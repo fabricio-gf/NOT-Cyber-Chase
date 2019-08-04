@@ -18,6 +18,8 @@ public class Powerup : MonoBehaviour
         LIFE
     }
 
+    Transform child;    
+
     public void Awake()
     {
         angularVelocity = Random.Range(minVelocity, maxVelocity);
@@ -25,17 +27,19 @@ public class Powerup : MonoBehaviour
         {
             angularVelocity = -angularVelocity;
         }
+        child = transform.GetChild(0);
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(new Vector3(0, 0, 1), angularVelocity);
+        child.Rotate(new Vector3(0, 0, 1), angularVelocity);
         transform.Translate(Vector3.down*moveSpeed*Time.deltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        print(collision.tag);
         if (collision.CompareTag("Player"))
         {
             Player pl = collision.GetComponent<Player>();
@@ -54,6 +58,7 @@ public class Powerup : MonoBehaviour
                     pl.AddLife();
                 break;
             }
+            Destroy(gameObject);
         }
     }
 }

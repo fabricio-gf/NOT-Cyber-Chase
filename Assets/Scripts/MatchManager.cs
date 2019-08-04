@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class MatchManager : MonoBehaviour
 {
+    public static MatchManager instance = null;
+
     public bool[] connectedPlayers;
 
     public PlayerSpawner playerSpawner;
 
-    GameObject[] playerReferences;
+    public GameObject[] playerReferences;
 
     public EnemySpawner enemySpawner;
     public GUIManager guiManager;
@@ -19,6 +21,15 @@ public class MatchManager : MonoBehaviour
 
     private void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
+
         //get connected players
     }
 
