@@ -62,7 +62,7 @@ public class Player : MonoBehaviour
     {
         if (hasShield)
         {
-            //destroyShield 
+            //destroyShield
         }
     }
 
