@@ -20,6 +20,13 @@ public class PointsTracker : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        for (int i = 0; i < 4; i++) {
+            UpdatePoints(0, i);
+        }
+    }
+
     public void UpdatePoints(int change, int index)
     {
         points[index] += change;

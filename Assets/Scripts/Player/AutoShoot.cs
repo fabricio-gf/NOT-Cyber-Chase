@@ -39,6 +39,7 @@ public class AutoShoot : MonoBehaviour
                 {
                     obj = Instantiate(bulletPrefab, transform.position + spawnPositions[i], Quaternion.identity, bulletsParent);
                     obj.GetComponent<Rigidbody2D>().velocity = velocities[i];
+                    obj.GetComponent<ProjectileBehaviour>().myShooter = gameObject;
                 }
                 currentTime = shootRate;
             }

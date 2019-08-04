@@ -17,9 +17,9 @@ public class EnemyBehaviour : MonoBehaviour
             }
             else
             {
-                print(ExplosionSpawner.instance);
+                PointsTracker.instance.UpdatePoints(PointsLookupTable.instance.FetchPointValue("KillSimpleEnemy"), collision.GetComponent<ProjectileBehaviour>().myShooter.GetComponent<Player>().playerNumber);
                 ExplosionSpawner.instance.SpawnExplosion(transform.position);
-                FindObjectOfType<PowerupSpawner>().CheckPowerupSpawn(transform.position);
+                PowerupSpawner.instance.CheckPowerupSpawn(transform.position);
                 Destroy(gameObject);
             }
         }

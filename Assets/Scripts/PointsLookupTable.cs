@@ -21,6 +21,8 @@ public class PointsLookupTable : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        LoadDictionary();
     }
 
     void LoadDictionary()

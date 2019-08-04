@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class ProjectileTracker : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public List<GameObject> enemyBullets = new List<GameObject>();
+    public List<GameObject> playerBullets = new List<GameObject>();
 
-    // Update is called once per frame
-    void Update()
+    public static ProjectileTracker instance = null;
+
+    private void Awake()
     {
-        
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
     }
 }

@@ -2,6 +2,8 @@
 
 public class PowerupSpawner : MonoBehaviour
 {
+    public static PowerupSpawner instance = null;
+
     public GameObject[] powerUpPrefabs;
     public Transform spawnParent;
 
@@ -9,6 +11,18 @@ public class PowerupSpawner : MonoBehaviour
     public float spawnIncrement;
 
     float spawnRate;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
+    }
 
     public void CheckPowerupSpawn(Vector3 position)
     {
