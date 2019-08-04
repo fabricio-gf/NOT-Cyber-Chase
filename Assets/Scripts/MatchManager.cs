@@ -30,7 +30,13 @@ public class MatchManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        //get connected players
+        for(int i = 0; i < 4; i++)
+        {
+            if(InputManager.GetPlayerInput(i) != null)
+            {
+                connectedPlayers[i] = true;
+            }
+        }
     }
 
     private void Start()
@@ -50,9 +56,12 @@ public class MatchManager : MonoBehaviour
 
         for(int i = 0; i < playerReferences.Length; i++)
         {
-            //allow inputs
-            if(playerReferences[i] != null)
+            
+            if (playerReferences[i] != null)
+            {
+                playerReferences[i].GetComponent<SlideMovimentation>().canMove = true;
                 playerReferences[i].GetComponent<AutoShoot>().canShoot = true;
+            }
         }
     }
 }

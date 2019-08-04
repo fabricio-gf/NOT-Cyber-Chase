@@ -24,6 +24,14 @@ public class InputManager : MonoBehaviour {
 
     static bool inlobby = true;
 
+    public GameObject[] playerTokens;
+
+    public GameObject[] arrows;
+
+    public GameObject readyButton;
+
+    int connectedPlayers = 0;
+
     void Start() {
 
     }
@@ -32,17 +40,89 @@ public class InputManager : MonoBehaviour {
     void Update() {
         if (Player0 != null) {
             Debug.Log("Player 0 conectado");
-            inlobby = false;
+            //spawn token
+            //accept input
+        }
+        else
+        {
+            //despawn token
         }
         if (Player1 != null) {
             Debug.Log("Player 1 conectado");
+            //spawn token
+            //accept input
         }
         if (Player2 != null) {
             Debug.Log("Player 2 conectado");
+            //spawn token
+            //accept input
         }
         if (Player3 != null) {
             Debug.Log("Player 3 conectado");
+            //spawn token
+            //accept input
         }
+    }
+
+    public void ConnectPlayer(int index, PlayerController controller)
+    {
+        connectedPlayers++;
+        if (connectedPlayers > 0)
+        {
+            readyButton.SetActive(true);
+        }
+        switch (index)
+        {
+            case 0:
+                Player0 = controller;
+                break;
+            case 1:
+                Player1 = controller;
+                break;
+            case 2:
+                Player2 = controller;
+                break;
+            case 3:
+                Player3 = controller;
+                break;
+
+        }
+        arrows[index].SetActive(true);
+        playerTokens[index].SetActive(true);
+        //show client which token he is
+    }
+
+    public void DisconnectPlayer(int index)
+    {
+        connectedPlayers--;
+        if (connectedPlayers == 0)
+        {
+            readyButton.SetActive(false);
+        }
+        switch (index)
+        {
+            case 0:
+                Player0 = null;
+                break;
+            case 1:
+                Player1 = null;
+                break;
+            case 2:
+                Player2 = null;
+                break;
+            case 3:
+                Player3 = null;
+                break;
+
+        }
+        arrows[index].SetActive(false);
+        playerTokens[index].SetActive(false);
+    }
+
+    public void StartGame()
+    {
+        inlobby = false;
+        //change scene
     }
 
     enum InputSourceType {

@@ -83,6 +83,7 @@ public class PlayerSpawner : MonoBehaviour
             {
                 obj = Instantiate(playerPrefabs[i], spawnPositions[i], Quaternion.identity, playerParent);
                 obj.GetComponent<Player>().playerNumber = index;
+                obj.GetComponent<SlideMovimentation>().canMove = true;
                 obj.GetComponent<SlideMovimentation>().ActualTile = spawnTiles[i];
                 obj.GetComponent<ToggleInvincibility>().Toggle();
                 obj.GetComponent<Player>().lives = lives;

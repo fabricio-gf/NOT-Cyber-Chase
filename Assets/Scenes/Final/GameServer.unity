@@ -334,6 +334,9 @@ MonoBehaviour:
   enemies:
   - {fileID: 2296233573877492402, guid: 4549f979208b43a42874c6490290a46b, type: 3}
   - {fileID: 2296233573877492402, guid: 4d71a4d9de5ed0344bd7f3b674d44ede, type: 3}
+  bombDrone: {fileID: 829282144996183182, guid: a1c4d2178bc493d47ab300059ad89211,
+    type: 3}
+  bombDroneSpawnRate: 20
   enemyParent: {fileID: 636443276}
   spawnRate: 3
   difficultyMultiplier: 0.01
@@ -1528,7 +1531,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: a0579b8f78947ce4994b98be588ea4f1, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 22950b6ffed037242813cd0e20b24664, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -5293,7 +5296,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3af4e8aa7cc646e4d81738f31fcfa518, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  connectedPlayers: 01000000
+  connectedPlayers: 00000000
   playerSpawner: {fileID: 1707522901}
   playerReferences: []
   enemySpawner: {fileID: 7728107}

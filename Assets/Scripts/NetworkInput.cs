@@ -19,6 +19,11 @@ public class NetworkInput : NetworkBehaviour
     float minDistance = 120f;
     Vector2 beginTouchPosition;
 
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
     public void Start() {
         if (!isLocalPlayer) {
             ConnectionManager.CreateNewConnection(this);

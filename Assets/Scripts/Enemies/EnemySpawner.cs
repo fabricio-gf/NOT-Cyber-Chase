@@ -9,6 +9,12 @@ public class EnemySpawner : MonoBehaviour
     public Vector3[] spawnPositions;
     public GameObject[] enemies;
 
+    [Header("Bomb Drone")]
+    public GameObject bombDrone;
+    public float bombDroneSpawnRate;
+    float currentBombTime;
+
+    [Space(20)]
     public Transform enemyParent;
     public float spawnRate;
     public float difficultyMultiplier;
@@ -35,6 +41,7 @@ public class EnemySpawner : MonoBehaviour
     {
         currentTime = spawnRate;
         diffCount = 0;
+        currentBombTime = bombDroneSpawnRate;
     }
 
     void Update()
@@ -56,6 +63,14 @@ public class EnemySpawner : MonoBehaviour
 
                 Instantiate(enemies[randomIndex], spawnPositions[Random.Range(0, spawnPositions.Length)], Quaternion.identity, enemyParent);
                 currentTime += spawnRate;
+            }
+
+            currentBombTime -= Time.deltaTime;
+
+            if(currentBombTime <= 0)
+            {
+                Instantiate(bombDrone, spawnPositions[Random.Range(0, spawnPositions.Length)], Quaternion.identity, enemyParent);
+                currentBombTime += bombDroneSpawnRate;
             }
         }
     }

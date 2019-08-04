@@ -10,6 +10,8 @@ public class SlideMovimentation : MonoBehaviour{
 
     public bool isMoving;
 
+    public bool canMove = false;
+
     // Start is called before the first frame update
     void Start(){
         
@@ -21,7 +23,7 @@ public class SlideMovimentation : MonoBehaviour{
         if (ActualTile == null) {
             ActualTile = FindObjectOfType<Tile>();
         }
-        if (!isMoving) {
+        /* if (!isMoving && canMove) {
             //Input temporario
             if (Input.GetKeyDown(KeyCode.W)) {
                 //moveUp
@@ -39,7 +41,7 @@ public class SlideMovimentation : MonoBehaviour{
                 //moveLeft
                 moveLeft();
             }
-        }
+        }*/
 
         Move();
     }
@@ -67,6 +69,8 @@ public class SlideMovimentation : MonoBehaviour{
     }
 
     public void moveUp() {
+        if (isMoving || !canMove) return;
+
         if (ActualTile.upTile != null) {
             ActualTile = ActualTile.upTile;
             isMoving = true;
@@ -74,6 +78,8 @@ public class SlideMovimentation : MonoBehaviour{
     }
 
     public void moveRight() {
+        if (isMoving || !canMove) return;
+
         if (ActualTile.rightTile != null) {
             ActualTile = ActualTile.rightTile;
             isMoving = true;
@@ -81,6 +87,8 @@ public class SlideMovimentation : MonoBehaviour{
     }
 
     public void moveDown() {
+        if (isMoving || !canMove) return;
+
         if (ActualTile.downTile != null) {
             ActualTile = ActualTile.downTile;
             isMoving = true;
@@ -88,6 +96,8 @@ public class SlideMovimentation : MonoBehaviour{
     }
 
     public void moveLeft() {
+        if (isMoving || !canMove) return;
+
         if (ActualTile.leftTile != null) {
             ActualTile = ActualTile.leftTile;
             isMoving = true;

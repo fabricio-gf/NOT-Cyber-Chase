@@ -27,11 +27,61 @@ public class Player : MonoBehaviour
     [Header("References")]
     public GameObject shieldObject;
     public GameObject bombPrefab;
+    SlideMovimentation movementScript;
 
     [System.Serializable] public struct ShotFormation
     {
         public Vector3[] positions;
         public Vector3[] velocities;
+    }
+
+    private void Awake()
+    {
+        movementScript = GetComponent<SlideMovimentation>();
+    }
+
+    private void Update()
+    {
+        GetMovementInputs();
+        GetOtherInputs();
+    }
+
+    void GetMovementInputs()
+    {
+        if(InputManager.GetPlayerInput(playerNumber) != null)
+        {
+            if(InputManager.GetPlayerInput(playerNumber).GetHorizontal() > 0)
+            {
+                movementScript.moveRight();
+            }
+            if (InputManager.GetPlayerInput(playerNumber).GetHorizontal() < 0)
+            {
+                movementScript.moveLeft();
+            }
+            if (InputManager.GetPlayerInput(playerNumber).GetVertical() > 0)
+            {
+                movementScript.moveUp();
+            }
+            if (InputManager.GetPlayerInput(playerNumber).GetVertical() < 0)
+            {
+                movementScript.moveDown();
+            }
+        }
+    }
+
+    void GetOtherInputs()
+    {
+        if (InputManager.GetPlayerInput(playerNumber) != null)
+        {
+            if (InputManager.GetPlayerInput(playerNumber).GetConfirmation())
+            {
+
+            }
+            if (InputManager.GetPlayerInput(playerNumber).GetCancel())
+            {
+
+            }
+        }   
     }
 
     public void IncrementShotLevel()
