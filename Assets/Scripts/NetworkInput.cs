@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Mirror;
 
 public class NetworkInput : NetworkBehaviour
@@ -9,6 +10,9 @@ public class NetworkInput : NetworkBehaviour
     public InputType inputState = InputType.None; //
 
     public string Name;
+
+    [SyncVar]
+    public int changeScene;
 
     [SerializeField]
     GameObject spaceShip;
@@ -37,6 +41,12 @@ public class NetworkInput : NetworkBehaviour
         if (!isLocalPlayer) {
             return;
         }
+
+        if(changeScene == 1){
+             SceneManager.LoadScene("ClientPlay");
+             changeScene = 0;
+        }
+
         if(Input.GetKey(KeyCode.W)){
             CmdUpdateState(InputType.Up);
         }

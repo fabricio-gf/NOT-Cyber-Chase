@@ -123,6 +123,7 @@ public class InputManager : MonoBehaviour {
     {
         inlobby = false;
         //change scene
+        ConnectionManager.instance.StartGame();
     }
 
     enum InputSourceType {
@@ -213,7 +214,7 @@ public abstract class PlayerController {
 }
 
 public class LanController : PlayerController {
-    NetworkInput myConnection;
+    public NetworkInput myConnection;
 
     public LanController(NetworkInput connection) {
         myConnection = connection;

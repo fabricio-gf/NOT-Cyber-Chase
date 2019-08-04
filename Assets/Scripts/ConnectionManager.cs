@@ -49,6 +49,12 @@ public class ConnectionManager : NetworkBehaviour {
         }
     }
 
+    public void StartGame(){
+        foreach (NetworkInput connection in Connections){
+            connection.changeScene = 1;
+        }
+    }
+
     void SetIp(){
         string ip = GetLocalIPAddress();
         ipText.text = ip;
