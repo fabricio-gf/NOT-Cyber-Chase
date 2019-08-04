@@ -1,10 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using Mirror;
 
-public class ConnectionManager : MonoBehaviour {
+public class ConnectionManager : NetworkBehaviour {
 
     public static ConnectionManager instance = null;
+
+    [SerializeField]
+    Text ipText;
 
     static List<NetworkInput> Connections;
 
@@ -22,6 +27,8 @@ public class ConnectionManager : MonoBehaviour {
 
         //Long live the King!
         Connections = new List<NetworkInput>();
+
+        SetIp();
     }
 
     /// <summary>
@@ -41,5 +48,23 @@ public class ConnectionManager : MonoBehaviour {
             InputManager.RegisterLanInput(connection);
         }
     }
-    
+
+    void SetIp(){
+        string ip = GetLocalIPAddress();
+        ipText.text = ip;
+    }
+    string GetLocalIPAddress()
+    {
+        var host = System.Net.Dns.GetHostEntry(System.Net.Dns.GetHostName());
+        foreach (var ip in host.AddressList)
+        {
+            if (ip.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+            {
+                return ip.ToString();
+            }
+        }
+
+        throw new System.Exception("No network adapters with an IPv4 address in the system!");
+    }
+
 }

@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 
-
 public class NetworkInput : NetworkBehaviour
 {
 
     public InputType inputState = InputType.None; //
 
-    [SyncVar]
     public string Name;
 
     [SerializeField]
@@ -19,20 +17,14 @@ public class NetworkInput : NetworkBehaviour
     float minDistance = 120f;
     Vector2 beginTouchPosition;
 
+    bool canSwipe = true;
+
     public void Start() {
         if (!isLocalPlayer) {
             ConnectionManager.CreateNewConnection(this);
+            Name = NetworkManager.singleton.playerName;
         }
-    }
 
-    public override void OnStartServer()
-    {
-        base.OnStartServer();
-        if(!isLocalPlayer){
-            //Talvez issu não seja função do networkInput (comment by cartaz)
-            //Instantiate(spaceShip, new Vector3(0,0,0), Quaternion.identity);
-            name = Name;
-        }
     }
 
 
@@ -50,9 +42,10 @@ public class NetworkInput : NetworkBehaviour
             return;
         Touch touch = Input.GetTouch(0);
         if(touch.phase == TouchPhase.Began){
+            canSwipe = true;
             beginTouchPosition = touch.position;
         }
-        else if(touch.phase == TouchPhase.Moved){
+        else if(touch.phase == TouchPhase.Moved && canSwipe){
             Vector2 endTouchPosition = touch.position;
             float dist = Vector2.Distance(beginTouchPosition,endTouchPosition);
             if(dist > minDistance){
@@ -61,17 +54,21 @@ public class NetworkInput : NetworkBehaviour
                 if(Mathf.Abs(dx) > Mathf.Abs(dy)){
                     if(dx > 0) {
                         CmdUpdateState(InputType.Right);
+                        canSwipe = false;
                     }
                     else {
                         CmdUpdateState(InputType.Left);
+                        canSwipe = false;
                     }
                 }
                 else{
                     if(dy > 0) {
                         CmdUpdateState(InputType.Up);
+                        canSwipe = false;
                     }
                     else {
                         CmdUpdateState(InputType.Down);
+                        canSwipe = false;
                     }
                 }
             }
