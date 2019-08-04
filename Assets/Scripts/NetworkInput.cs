@@ -43,6 +43,12 @@ public class NetworkInput : NetworkBehaviour
         if(Input.GetKey(KeyCode.S)){
             CmdUpdateState(InputType.Down);
         }
+        if(Input.GetKey(KeyCode.A)){
+            CmdUpdateState(InputType.Left);
+        }
+        if(Input.GetKey(KeyCode.D)){
+            CmdUpdateState(InputType.Right);
+        }
         if(Input.touchCount < 1)
             return;
         Touch touch = Input.GetTouch(0);

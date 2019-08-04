@@ -21,6 +21,9 @@ namespace Mirror
         void Awake()
         {
             manager = GetComponent<NetworkManager>();
+            if(!isClient){
+                manager.StartServer();
+            }
         }
 
         void OnGUI()
@@ -78,11 +81,11 @@ namespace Mirror
                 // server / client status message
                 if (NetworkServer.active)
                 {
-                    GUILayout.Label("Server: active. Transport: " + Transport.activeTransport);
+                    //GUILayout.Label("Server: active. Transport: " + Transport.activeTransport);
                 }
                 if (NetworkClient.isConnected)
                 {
-                    GUILayout.Label("Client: address=" + manager.networkAddress);
+                    //GUILayout.Label("Client: address=" + manager.networkAddress);
                 }
             }
 
@@ -103,16 +106,19 @@ namespace Mirror
             // stop
             if (NetworkServer.active || NetworkClient.isConnected)
             {
-                if (GUILayout.Button("Stop"))
-                {
-                    manager.StopHost();
-                }
+                // if (GUILayout.Button("Stop"))
+                // {
+                //     manager.StopHost();
+                // }
             }
 
             GUILayout.EndArea();
         }
         public void StartClient(){
-            //manager.networkAddress = GameObject.Find("IpText").GetComponent<Text>().text.ToString();
+            manager.networkAddress = GameObject.Find("IpText").GetComponent<Text>().text.ToString();
+            if(manager.networkAddress == ""){
+                manager.networkAddress = "localhost";
+            }
             manager.playerName = GameObject.Find("NameText").GetComponent<Text>().text.ToString();
             manager.StartClient();
         }
