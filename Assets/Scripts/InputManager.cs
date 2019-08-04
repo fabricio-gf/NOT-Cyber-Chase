@@ -16,6 +16,22 @@ public enum InputType {
 }
 
 public class InputManager : MonoBehaviour {
+
+    public static InputManager instance = null;
+
+    void Awake() {
+        //Check if instance already exists
+        if (instance == null)
+            instance = this;
+
+        //Destroy the fake
+        else if (instance != this)
+            Destroy(gameObject);
+
+        //Dont destroy the ruler
+        DontDestroyOnLoad(gameObject);
+    }
+
     // Start is called before the first frame update
     static PlayerController Player0;
     static PlayerController Player1;
@@ -35,34 +51,7 @@ public class InputManager : MonoBehaviour {
     void Start() {
 
     }
-
-    // Update is called once per frame
-    void Update() {
-        if (Player0 != null) {
-            Debug.Log("Player 0 conectado");
-            //spawn token
-            //accept input
-        }
-        else
-        {
-            //despawn token
-        }
-        if (Player1 != null) {
-            Debug.Log("Player 1 conectado");
-            //spawn token
-            //accept input
-        }
-        if (Player2 != null) {
-            Debug.Log("Player 2 conectado");
-            //spawn token
-            //accept input
-        }
-        if (Player3 != null) {
-            Debug.Log("Player 3 conectado");
-            //spawn token
-            //accept input
-        }
-    }
+    
 
     public void ConnectPlayer(int index, PlayerController controller)
     {
@@ -138,48 +127,50 @@ public class InputManager : MonoBehaviour {
         switch (connection.inputState) {
             case InputType.Up:
                 if (Player2 != null && Player2.Name == connection.Name) {
-                    Player2 = null;
+                    instance.DisconnectPlayer(2);
                 } else if (Player0 == null) {
-                    Player0 = new LanController(connection);
+                    instance.ConnectPlayer( 0,new LanController(connection));
                 }
-
                 break;
             case InputType.Right:
                 if (Player3 != null && Player3.Name == connection.Name) {
-                    Player3 = null;
-                }
-                else if(Player1 == null) {
-                    Player1 = new LanController(connection);
+                    instance.DisconnectPlayer(3);
+
+                } else if(Player1 == null) {
+                    instance.ConnectPlayer(1, new LanController(connection));
+
                 }
                 break;
             case InputType.Down:
                 if (Player0 != null && Player0.Name == connection.Name) {
-                    Player0 = null;
-                }
-                else if(Player2 == null) {
-                    Player2 = new LanController(connection);
+                    instance.DisconnectPlayer(0);
+
+                } else if(Player2 == null) {
+                    instance.ConnectPlayer(2, new LanController(connection));
                 }
                 break;
             case InputType.Left:
                 if (Player1 != null && Player1.Name == connection.Name) {
-                    Player1 = null;
-                }
-                else if(Player3 == null) {
-                    Player3 = new LanController(connection);
+                    instance.DisconnectPlayer(1);
+                } else if(Player3 == null) {
+                    instance.ConnectPlayer(3, new LanController(connection));
+
                 }
                 break;
             case InputType.Cancel:
                 if (Player0 != null && Player0.Name == connection.Name) {
-                    Player0 = null;
+                    instance.DisconnectPlayer(0);
+
                 }
                 if (Player1 != null && Player1.Name == connection.Name) {
-                    Player1 = null;
+                    instance.DisconnectPlayer(1);
+
                 }
                 if (Player2 != null && Player2.Name == connection.Name) {
-                    Player2 = null;
+                    instance.DisconnectPlayer(2);
                 }
                 if (Player3 != null && Player3.Name == connection.Name) {
-                    Player3 = null;
+                    instance.DisconnectPlayer(3);
                 }
                 break;
             default:
