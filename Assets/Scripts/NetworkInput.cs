@@ -7,7 +7,7 @@ using Mirror;
 public class NetworkInput : NetworkBehaviour
 {
 
-    public int inputState = 0; //
+    public InputType inputState = InputType.None; //
 
     [SyncVar]
     public string Name;
@@ -19,22 +19,29 @@ public class NetworkInput : NetworkBehaviour
     float minDistance = 120f;
     Vector2 beginTouchPosition;
 
+    public void Start() {
+        if (!isLocalPlayer) {
+            ConnectionManager.CreateNewConnection(this);
+        }
+    }
+
     public override void OnStartServer()
     {
         base.OnStartServer();
         if(!isLocalPlayer){
             //Talvez issu não seja função do networkInput (comment by cartaz)
-            Instantiate(spaceShip, new Vector3(0,0,0), Quaternion.identity);
+            //Instantiate(spaceShip, new Vector3(0,0,0), Quaternion.identity);
             name = Name;
         }
     }
+
 
     void Update() {
         if (!isLocalPlayer) {
             return;
         }
         if(Input.GetKey(KeyCode.W)){
-            CmdUpdateState((int)InputType.Up);
+            CmdUpdateState(InputType.Up);
         }
         if(Input.touchCount < 1)
             return;
@@ -50,31 +57,34 @@ public class NetworkInput : NetworkBehaviour
                 float dy = endTouchPosition.y-beginTouchPosition.y;
                 if(Mathf.Abs(dx) > Mathf.Abs(dy)){
                     if(dx > 0) {
-                        CmdUpdateState((int)InputType.Right);
+                        CmdUpdateState(InputType.Right);
                     }
                     else {
-                        CmdUpdateState((int)InputType.Left);
+                        CmdUpdateState(InputType.Left);
                     }
                 }
                 else{
                     if(dy > 0) {
-                        CmdUpdateState((int)InputType.Up);
+                        CmdUpdateState(InputType.Up);
                     }
                     else {
-                        CmdUpdateState((int)InputType.Down);
+                        CmdUpdateState(InputType.Down);
                     }
                 }
             }
-
         }
     }
 
         [Command]
-    void CmdUpdateState(int newState)
+    void CmdUpdateState(InputType newState)
     {
         inputState = newState;
     }
 
-
+    private void LateUpdate() {
+        if (!isLocalPlayer && inputState != InputType.None) {
+            inputState = InputType.None;
+        }
+    }
 
 }
