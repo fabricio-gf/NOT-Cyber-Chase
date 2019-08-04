@@ -22,12 +22,27 @@ public class InputManager : MonoBehaviour {
     static PlayerController Player2;
     static PlayerController Player3;
 
+    static bool inlobby = true;
+
     void Start() {
 
     }
 
     // Update is called once per frame
     void Update() {
+        if (Player0 != null) {
+            Debug.Log("Player 0 conectado");
+            inlobby = false;
+        }
+        if (Player1 != null) {
+            Debug.Log("Player 1 conectado");
+        }
+        if (Player2 != null) {
+            Debug.Log("Player 2 conectado");
+        }
+        if (Player3 != null) {
+            Debug.Log("Player 3 conectado");
+        }
     }
 
     enum InputSourceType {
@@ -37,9 +52,12 @@ public class InputManager : MonoBehaviour {
     }
 
     public static void RegisterLanInput (NetworkInput connection) {
+        if (!inlobby) {
+            return;
+        }
         switch (connection.inputState) {
             case InputType.Up:
-                if (Player2.Name == connection.Name) {
+                if (Player2 != null && Player2.Name == connection.Name) {
                     Player2 = null;
                 } else if (Player0 == null) {
                     Player0 = new LanController(connection);
@@ -47,7 +65,7 @@ public class InputManager : MonoBehaviour {
 
                 break;
             case InputType.Right:
-                if (Player3.Name == connection.Name) {
+                if (Player3 != null && Player3.Name == connection.Name) {
                     Player3 = null;
                 }
                 else if(Player1 == null) {
@@ -55,7 +73,7 @@ public class InputManager : MonoBehaviour {
                 }
                 break;
             case InputType.Down:
-                if (Player0.Name == connection.Name) {
+                if (Player0 != null && Player0.Name == connection.Name) {
                     Player0 = null;
                 }
                 else if(Player2 == null) {
@@ -63,7 +81,7 @@ public class InputManager : MonoBehaviour {
                 }
                 break;
             case InputType.Left:
-                if (Player1.Name == connection.Name) {
+                if (Player1 != null && Player1.Name == connection.Name) {
                     Player1 = null;
                 }
                 else if(Player3 == null) {
@@ -71,16 +89,16 @@ public class InputManager : MonoBehaviour {
                 }
                 break;
             case InputType.Cancel:
-                if (Player0.Name == connection.Name) {
+                if (Player0 != null && Player0.Name == connection.Name) {
                     Player0 = null;
                 }
-                if (Player1.Name == connection.Name) {
+                if (Player1 != null && Player1.Name == connection.Name) {
                     Player1 = null;
                 }
-                if (Player2.Name == connection.Name) {
+                if (Player2 != null && Player2.Name == connection.Name) {
                     Player2 = null;
                 }
-                if (Player3.Name == connection.Name) {
+                if (Player3 != null && Player3.Name == connection.Name) {
                     Player3 = null;
                 }
                 break;
@@ -104,56 +122,57 @@ public class InputManager : MonoBehaviour {
         }
         return null;
     }
+}
+public abstract class PlayerController {
+    public string Name;
 
-    public abstract class PlayerController {
-        public string Name;
+    public abstract float GetHorizontal();
+    public abstract float GetVertical();
+    public abstract bool GetConfirmation();
+    public abstract bool GetCancel();
+}
 
-        public abstract float GetHorizontal();
-        public abstract float GetVertical();
-        public abstract bool GetConfirmation();
-        public abstract bool GetCancel();
+public class LanController : PlayerController {
+    NetworkInput myConnection;
+
+    public LanController(NetworkInput connection) {
+        myConnection = connection;
+        Name = myConnection.Name;
     }
 
-    public class LanController : PlayerController{
-        NetworkInput myConnection;
-
-        public LanController(NetworkInput connection) {
-            myConnection = connection;
-            Name = myConnection.Name;
+    override
+    public float GetHorizontal() {
+        switch (myConnection.inputState) {
+            case global::InputType.Right:
+                return 1f;
+            case global::InputType.Left:
+                return -1f;
+            default:
+                return 0f;
         }
+    }
 
-        override
-        public float GetHorizontal() {
-            switch (myConnection.inputState) {
-                case InputType.Right:
-                    return 1f;
-                case InputType.Left:
-                    return -1f;
-                default:
-                    return 0f;
-            }
+    override
+    public float GetVertical() {
+        switch (myConnection.inputState) {
+            case global::InputType.Up:
+                return 1f;
+            case global::InputType.Down:
+                return -1f;
+            default:
+                return 0f;
         }
+    }
 
-        override
-        public float GetVertical() {
-            switch (myConnection.inputState) {
-                case InputType.Up:
-                    return 1f;
-                case InputType.Down:
-                    return -1f;
-                default:
-                    return 0f;
-            }
-        }
+    override
+    public bool GetConfirmation() {
+        Debug.Log("Confirmation");
+        return (myConnection.inputState == global::InputType.Confirmation);
+    }
 
-        override
-        public bool GetConfirmation() {
-            return (myConnection.inputState == InputType.Confirmation);
-        }
-
-        override
-        public bool GetCancel() {
-            return myConnection.inputState == InputType.Cancel;
-        }
+    override
+    public bool GetCancel() {
+        Debug.Log("Cancel");
+        return myConnection.inputState == global::InputType.Cancel;
     }
 }

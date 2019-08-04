@@ -7,7 +7,7 @@ using Mirror;
 public class NetworkInput : NetworkBehaviour
 {
 
-    public InputType inputState = 0; //
+    public InputType inputState = InputType.None; //
 
     [SyncVar]
     public string Name;
@@ -19,6 +19,12 @@ public class NetworkInput : NetworkBehaviour
     float minDistance = 120f;
     Vector2 beginTouchPosition;
 
+    public void Start() {
+        if (!isLocalPlayer) {
+            ConnectionManager.CreateNewConnection(this);
+        }
+    }
+
     public override void OnStartServer()
     {
         base.OnStartServer();
@@ -29,14 +35,6 @@ public class NetworkInput : NetworkBehaviour
         }
     }
 
-    void LateUpdate() {
-        if (!isLocalPlayer) {
-            if(inputState != 0){
-                inputState = 0;
-            }
-            return;
-        }
-    }
 
     void Update() {
         if (!isLocalPlayer) {
@@ -77,7 +75,6 @@ public class NetworkInput : NetworkBehaviour
                     }
                 }
             }
-
         }
     }
 
@@ -87,6 +84,10 @@ public class NetworkInput : NetworkBehaviour
         inputState = newState;
     }
 
-
+    private void LateUpdate() {
+        if (!isLocalPlayer && inputState != InputType.None) {
+            inputState = InputType.None;
+        }
+    }
 
 }
