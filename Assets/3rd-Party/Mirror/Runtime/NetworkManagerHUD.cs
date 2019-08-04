@@ -3,7 +3,6 @@
 using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.UI;
-
 namespace Mirror
 {
     [AddComponentMenu("Network/NetworkManagerHUD")]
@@ -117,7 +116,8 @@ namespace Mirror
         public void StartClient(){
             manager.networkAddress = GameObject.Find("IpText").GetComponent<Text>().text.ToString();
             if(manager.networkAddress == ""){
-                manager.networkAddress = "localhost";
+                //manager.networkAddress = "localhost";
+                return;
             }
             manager.playerName = GameObject.Find("NameText").GetComponent<Text>().text.ToString();
             manager.StartClient();

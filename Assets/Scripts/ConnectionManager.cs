@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Mirror;
+using TMPro;
 
 public class ConnectionManager : NetworkBehaviour {
 
-    public static ConnectionManager instance = null;
 
     [SerializeField]
-    Text ipText;
+    TextMeshProUGUI ipText;
 
     static List<NetworkInput> Connections;
+
+    public static ConnectionManager instance = null;
 
     void Awake() {
         //Check if instance already exists

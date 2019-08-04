@@ -23,7 +23,8 @@ public class SlideMovimentation : MonoBehaviour{
         if (ActualTile == null) {
             ActualTile = FindObjectOfType<Tile>();
         }
-        /* if (!isMoving && canMove) {
+        /*
+        if (!isMoving && canMove) {
             //Input temporario
             if (Input.GetKeyDown(KeyCode.W)) {
                 //moveUp
@@ -71,8 +72,8 @@ public class SlideMovimentation : MonoBehaviour{
     public void moveUp() {
         if (isMoving || !canMove) return;
 
-        if (ActualTile.upTile != null) {
-            ActualTile = ActualTile.upTile;
+        if (ActualTile.upTile != null && !ActualTile.upTile.occupied) {
+            TileSwap(ActualTile.upTile);
             isMoving = true;
         }
     }
@@ -80,8 +81,8 @@ public class SlideMovimentation : MonoBehaviour{
     public void moveRight() {
         if (isMoving || !canMove) return;
 
-        if (ActualTile.rightTile != null) {
-            ActualTile = ActualTile.rightTile;
+        if (ActualTile.rightTile != null && !ActualTile.rightTile.occupied) {
+            TileSwap(ActualTile.rightTile);
             isMoving = true;
         }
     }
@@ -89,8 +90,8 @@ public class SlideMovimentation : MonoBehaviour{
     public void moveDown() {
         if (isMoving || !canMove) return;
 
-        if (ActualTile.downTile != null) {
-            ActualTile = ActualTile.downTile;
+        if (ActualTile.downTile != null && !ActualTile.downTile.occupied) {
+            TileSwap(ActualTile.downTile);
             isMoving = true;
         }
     }
@@ -98,10 +99,14 @@ public class SlideMovimentation : MonoBehaviour{
     public void moveLeft() {
         if (isMoving || !canMove) return;
 
-        if (ActualTile.leftTile != null) {
-            ActualTile = ActualTile.leftTile;
+        if (ActualTile.leftTile != null && !ActualTile.leftTile.occupied) {
+            TileSwap( ActualTile.leftTile);
             isMoving = true;
         }
     }
-
+    void TileSwap(Tile newTile) {
+        ActualTile.occupied = false;
+        ActualTile = newTile;
+        ActualTile.occupied = true;
+    }
 }
