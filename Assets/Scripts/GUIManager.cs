@@ -50,7 +50,7 @@ public class GUIManager : MonoBehaviour
             case 0:
                 for(int i = 0; i < 3; i++)
                 {
-                    if(i <= number)
+                    if(i < number)
                     {
                         player1Life[i].SetActive(true);
                     }
@@ -63,7 +63,7 @@ public class GUIManager : MonoBehaviour
             case 1:
                 for (int i = 0; i < 3; i++)
                 {
-                    if (i <= number)
+                    if (i < number)
                     {
                         player2Life[i].SetActive(true);
                     }
@@ -76,7 +76,7 @@ public class GUIManager : MonoBehaviour
             case 3:
                 for (int i = 0; i < 3; i++)
                 {
-                    if (i <= number)
+                    if (i < number)
                     {
                         player3Life[i].SetActive(true);
                     }
@@ -89,7 +89,7 @@ public class GUIManager : MonoBehaviour
             case 4:
                 for (int i = 0; i < 3; i++)
                 {
-                    if (i <= number)
+                    if (i < number)
                     {
                         player4Life[i].SetActive(true);
                     }

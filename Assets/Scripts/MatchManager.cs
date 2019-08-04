@@ -37,6 +37,7 @@ public class MatchManager : MonoBehaviour
     {
         playerReferences = playerSpawner.SpawnPlayers(connectedPlayers);
         guiManager.ActivatePlayerInfos(connectedPlayers);
+        GameOver.instance.SetInitialLives(connectedPlayers);
 
         OnGameStart += StartMatch;
         countdownScript.StartCountdown();

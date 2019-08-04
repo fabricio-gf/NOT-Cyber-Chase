@@ -52,7 +52,7 @@ public class ToggleInvincibility : MonoBehaviour
         yield return new WaitForSeconds(totalDuration / 10);
 
         sprite.enabled = true;
-        coll.enabled = false;
+        coll.enabled = true;
         GetComponent<AutoShoot>().canShoot = true;
     }
 }

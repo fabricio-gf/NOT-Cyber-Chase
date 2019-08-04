@@ -88,16 +88,17 @@ public class Player : MonoBehaviour
             if(lives > 1)
             {
                 lives--;
+                GameOver.instance.LoseLife(playerNumber);
                 ExplosionSpawner.instance.SpawnExplosion(transform.position);
-                GUIManager.instance.ChangeLife(playerNumber, lives);
-                PlayerSpawner.instance.RespawnPlayer(playerNumber);
+                PlayerSpawner.instance.RespawnPlayer(playerNumber, lives);
                 Destroy(gameObject);
             }
             else
             {
                 ExplosionSpawner.instance.SpawnExplosion(transform.position);
-                GUIManager.instance.ChangeLife(playerNumber, lives);
-                //GameOver.instance.CheckGameOver();
+                GUIManager.instance.ChangeLife(playerNumber, lives-1);
+                GameOver.instance.LoseLife(playerNumber);
+                GameOver.instance.CheckGameOver();
                 Destroy(gameObject);
             }
         }

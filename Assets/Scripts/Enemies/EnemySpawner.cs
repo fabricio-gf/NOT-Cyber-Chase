@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    public static EnemySpawner instance = null;
+
     public Vector3[] spawnPositions;
     public GameObject[] enemies;
 
@@ -16,6 +18,18 @@ public class EnemySpawner : MonoBehaviour
     int randomIndex;
 
     float diffCount = 0;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void Start()
     {

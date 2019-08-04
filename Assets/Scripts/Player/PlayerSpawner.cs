@@ -49,6 +49,7 @@ public class PlayerSpawner : MonoBehaviour
             if (connectedPlayers[i])
             {
                 obj = Instantiate(playerPrefabs[i], spawnPositions[i], Quaternion.identity, playerParent);
+                obj.GetComponent<Player>().playerNumber = i;
                 obj.GetComponent<SlideMovimentation>().ActualTile = spawnTiles[i];
                 refs[i] = obj;
             }
@@ -66,13 +67,13 @@ public class PlayerSpawner : MonoBehaviour
         }
     }
 
-    public void RespawnPlayer(int index)
+    public void RespawnPlayer(int index, int lives)
     {
-        print("respawn request");
-        StartCoroutine(RespawnDelay());
+        GUIManager.instance.ChangeLife(index, lives);
+        StartCoroutine(RespawnDelay(index, lives));
     }
 
-    IEnumerator RespawnDelay()
+    IEnumerator RespawnDelay(int index, int lives)
     {
         yield return new WaitForSeconds(0.5f);
 
@@ -81,8 +82,10 @@ public class PlayerSpawner : MonoBehaviour
             if (!spawnTiles[i].occupied)
             {
                 obj = Instantiate(playerPrefabs[i], spawnPositions[i], Quaternion.identity, playerParent);
+                obj.GetComponent<Player>().playerNumber = index;
                 obj.GetComponent<SlideMovimentation>().ActualTile = spawnTiles[i];
                 obj.GetComponent<ToggleInvincibility>().Toggle();
+                obj.GetComponent<Player>().lives = lives;
 
                 MatchManager.instance.playerReferences[i] = obj;
                 break;
