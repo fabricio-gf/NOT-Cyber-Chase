@@ -5,7 +5,7 @@ namespace Mirror.Examples.Basic
 
     public class Player : NetworkBehaviour
     {
-
+        public GameObject nave;
         [SyncVar]
         public int data;
 
@@ -15,6 +15,9 @@ namespace Mirror.Examples.Basic
         public override void OnStartServer()
         {
             base.OnStartServer();
+            if(!isLocalPlayer){
+                Instantiate(nave);
+            }
             InvokeRepeating(nameof(UpdateData), 1, 1);
         }
 
