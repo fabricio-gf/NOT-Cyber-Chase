@@ -51,7 +51,7 @@ public class InputManager : MonoBehaviour {
     void Start() {
 
     }
-    
+
 
     public void ConnectPlayer(int index, PlayerController controller)
     {
@@ -111,8 +111,6 @@ public class InputManager : MonoBehaviour {
     public void StartGame()
     {
         inlobby = false;
-        //change scene
-        ConnectionManager.instance.StartGame();
     }
 
     enum InputSourceType {

@@ -7,6 +7,8 @@ using Mirror;
 public class NetworkInput : NetworkBehaviour
 {
 
+    [SerializeField]
+    GameObject LobbyRoom;
     public InputType inputState = InputType.None; //
 
     public string Name;
@@ -36,6 +38,13 @@ public class NetworkInput : NetworkBehaviour
 
     }
 
+    public override void OnStartClient(){
+        GameObject.Find("Join Room").SetActive(false);
+    }
+
+    public void JoinRoom(){
+        GameObject.Find("Join Room").SetActive(true);
+    }
 
     void Update() {
         if (!isLocalPlayer) {
