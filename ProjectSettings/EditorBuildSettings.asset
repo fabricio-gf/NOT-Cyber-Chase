@@ -5,7 +5,22 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
+    path: Assets/Scenes/Servidor.unity
+    guid: ad9900e8d029cec40b5e0da4469953b0
+  - enabled: 0
+    path: Assets/3rd-Party/Mirror/Examples/Tanks/Scenes/Scene.unity
+    guid: 83f9d2fb76f5742448c6e51f258327a2
+  - enabled: 0
+    path: Assets/3rd-Party/Mirror/Examples/ListServer/Scenes/Scene.unity
+    guid: ccdea83d270df4b078963a0243e41ac0
+  - enabled: 0
+    path: Assets/3rd-Party/Mirror/Examples/Lobby/Scenes/LobbyScene.unity
+    guid: 48478f4d522f96945b8396f376299d3a
+  - enabled: 0
     path: Assets/Scenes/Game.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/3rd-Party/Mirror/Examples/Basic/Scenes/Servidor.unity
+    guid: 8fe741b01c3bb4a21a2eaccdcc526260
   m_configObjects: {}
