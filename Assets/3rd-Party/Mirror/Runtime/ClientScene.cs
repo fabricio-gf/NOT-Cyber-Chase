@@ -448,7 +448,7 @@ namespace Mirror
             NetworkIdentity spawnedId = SpawnSceneObject(msg.sceneId);
             if (spawnedId == null)
             {
-                Debug.LogError("Spawn scene object not found for " + msg.sceneId.ToString("X") + " SpawnableObjects.Count=" + spawnableObjects.Count);
+                Debug.Log("Spawn scene object not found for " + msg.sceneId.ToString("X") + " SpawnableObjects.Count=" + spawnableObjects.Count);
 
                 // dump the whole spawnable objects dict for easier debugging
                 if (LogFilter.Debug)

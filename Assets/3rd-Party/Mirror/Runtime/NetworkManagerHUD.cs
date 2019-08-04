@@ -2,6 +2,7 @@
 // confusion if someone accidentally presses one.
 using System.ComponentModel;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Mirror
 {
@@ -13,6 +14,7 @@ namespace Mirror
     {
         NetworkManager manager;
         public bool showGUI = true;
+        public bool isClient = false;
         public int offsetX;
         public int offsetY;
 
@@ -32,7 +34,7 @@ namespace Mirror
                 if (!NetworkClient.active)
                 {
                     // LAN Host
-                    if (Application.platform != RuntimePlatform.WebGLPlayer)
+                    if (Application.platform != RuntimePlatform.WebGLPlayer && !isClient)
                     {
                         if (GUILayout.Button("LAN Host"))
                         {
@@ -55,9 +57,10 @@ namespace Mirror
                         // cant be a server in webgl build
                         GUILayout.Box("(  WebGL cannot be server  )");
                     }
-                    else
+                    else if(!isClient)
                     {
                         if (GUILayout.Button("LAN Server Only")) manager.StartServer();
+
                     }
                 }
                 else
@@ -107,6 +110,11 @@ namespace Mirror
             }
 
             GUILayout.EndArea();
+        }
+        public void StartClient(){
+            //manager.networkAddress = GameObject.Find("IpText").GetComponent<Text>().text.ToString();
+            manager.playerName = GameObject.Find("NameText").GetComponent<Text>().text.ToString();
+            manager.StartClient();
         }
     }
 }

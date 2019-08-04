@@ -38,6 +38,7 @@ namespace Mirror
         // transport layer
         [SerializeField] protected Transport transport;
         [FormerlySerializedAs("m_NetworkAddress")] public string networkAddress = "localhost";
+        public string playerName = "player";
         [FormerlySerializedAs("m_MaxConnections")] public int maxConnections = 4;
 
         [Header("Spawn Info")]
@@ -49,8 +50,6 @@ namespace Mirror
         public List<GameObject> spawnPrefabs = new List<GameObject>();
 
         public static List<Transform> startPositions = new List<Transform>();
-
-        public GameObject overPanel;
 
         [NonSerialized]
         public bool clientLoadedScene;
@@ -771,8 +770,6 @@ namespace Mirror
                 {
                     ClientScene.AddPlayer();
                 }
-                Debug.Log("asd");
-                overPanel.SetActive(true);
             }
         }
 
