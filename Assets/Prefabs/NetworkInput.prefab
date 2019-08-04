@@ -45,8 +45,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   syncInterval: 0.1
-  spaceShip: {fileID: 6677677993396853882, guid: c93f38a78fadea545ace0048e3cb210b,
-    type: 3}
+  inputState: 0
+  Name: 
+  spaceShip: {fileID: 0}
   minDistance: 120
 --- !u!114 &8356615327965628487
 MonoBehaviour:
@@ -62,5 +63,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   serverOnly: 0
   localPlayerAuthority: 1
-  m_AssetId: 
-  m_SceneId: 375431444
+  m_AssetId: 3d80335320e8de74cbeea6795b35c4f2
+  m_SceneId: 0
