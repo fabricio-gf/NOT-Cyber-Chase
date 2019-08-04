@@ -2,6 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public enum InputType {
+    None,
+    Up,
+    Right,
+    Down,
+    Left,
+    Tap,
+    DoubleTap,
+    Confirmation,
+    Cancel
+}
+
 public class InputManager : MonoBehaviour {
     // Start is called before the first frame update
     static PlayerController Player0;
@@ -21,6 +34,33 @@ public class InputManager : MonoBehaviour {
         Lan,
         Controller,
         Arrows
+    }
+
+    public static void RegisterLanInput (NetworkInput connection) {
+        switch (connection.inputState) {
+            case InputType.Up:
+                if (Player0 == null) {
+                    Player0 = new LanController(connection);
+                }
+                break;
+            case InputType.Right:
+                if (Player1 == null) {
+                    Player1 = new LanController(connection);
+                }
+                break;
+            case InputType.Down:
+                if (Player2 == null) {
+                    Player2 = new LanController(connection);
+                }
+                break;
+            case InputType.Left:
+                if (Player3 == null) {
+                    Player3 = new LanController(connection);
+                }
+                break;
+            default:
+                break;
+        }
     }
 
     public static PlayerController GetPlayerInput(int index) {
@@ -49,8 +89,9 @@ public class InputManager : MonoBehaviour {
     }
 
     public class LanController : PlayerController{
-        MonoBehaviour myConnection;
-        LanController(MonoBehaviour connection) {
+        NetworkInput myConnection;
+
+        public LanController(NetworkInput connection) {
             myConnection = connection;
             //name = myConnection.name;
         }

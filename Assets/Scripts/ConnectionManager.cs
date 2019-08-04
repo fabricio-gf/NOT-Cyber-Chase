@@ -6,7 +6,7 @@ public class ConnectionManager : MonoBehaviour {
 
     public static ConnectionManager instance = null;
 
-    static List<MonoBehaviour> Connections;
+    static List<NetworkInput> Connections;
 
     void Awake() {
         //Check if instance already exists
@@ -26,31 +26,19 @@ public class ConnectionManager : MonoBehaviour {
     /// Quando um NetworkBehaviour for spawnado, ele deve pedir pra ser cadastrado no network behaviour
     /// </summary>
     /// <param name="connection"></param>
-    public static void CreateNewConnection (MonoBehaviour connection) {
+    public static void CreateNewConnection (NetworkInput connection) {
         Connections.Add(connection);
     }
 
-    public static void ExitConnection(MonoBehaviour connection) {
+    public static void ExitConnection(NetworkInput connection) {
         Connections.Remove(connection);
     }
 
-    public enum LanInputType {
-        None,
-        Up,
-        Right,
-        Down,
-        Left,
-        Tap,
-        DoubleTap,
-        Confirmation,
-        Cancel
-    }
+   
 
     private void Update() {
-        foreach (MonoBehaviour connection in Connections) {
-            if (connection.input == ) {
-
-            }
+        foreach (NetworkInput connection in Connections) {
+            InputManager.RegisterLanInput(connection);
         }
     }
 
