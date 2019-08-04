@@ -7,6 +7,8 @@ public class BackgroundScroller : MonoBehaviour
 
     private Vector2 startPosition;
 
+    public float fuckingNumber;
+
     void Start()
     {
         startPosition = transform.position;
@@ -14,7 +16,7 @@ public class BackgroundScroller : MonoBehaviour
 
     void Update()
     {
-        float newPos = Mathf.Repeat(Time.time * scrollSpeed, 8);
+        float newPos = Mathf.Repeat(Time.time * scrollSpeed, fuckingNumber);
         transform.position = startPosition + Vector2.down * newPos;
     }
 }
