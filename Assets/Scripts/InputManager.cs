@@ -38,15 +38,15 @@ public class InputManager : MonoBehaviour {
 
     public static void RegisterLanInput (NetworkInput connection) {
         switch (connection.inputState) {
-            case InputType.Up:
+            case (int)InputType.Up:
                 if (Player2.Name == connection.Name) {
                     Player2 = null;
                 } else if (Player0 == null) {
                     Player0 = new LanController(connection);
                 }
-                
+
                 break;
-            case InputType.Right:
+            case (int)InputType.Right:
                 if (Player3.Name == connection.Name) {
                     Player3 = null;
                 }
@@ -54,7 +54,7 @@ public class InputManager : MonoBehaviour {
                     Player1 = new LanController(connection);
                 }
                 break;
-            case InputType.Down:
+            case (int)InputType.Down:
                 if (Player0.Name == connection.Name) {
                     Player0 = null;
                 }
@@ -62,7 +62,7 @@ public class InputManager : MonoBehaviour {
                     Player2 = new LanController(connection);
                 }
                 break;
-            case InputType.Left:
+            case (int)InputType.Left:
                 if (Player1.Name == connection.Name) {
                     Player1 = null;
                 }
@@ -70,7 +70,7 @@ public class InputManager : MonoBehaviour {
                     Player3 = new LanController(connection);
                 }
                 break;
-            case InputType.Cancel:
+            case (int)InputType.Cancel:
                 if (Player0.Name == connection.Name) {
                     Player0 = null;
                 }
@@ -121,13 +121,13 @@ public class InputManager : MonoBehaviour {
             myConnection = connection;
             Name = myConnection.Name;
         }
-        
+
         override
         public float GetHorizontal() {
             switch (myConnection.inputState) {
-                case InputType.Right:
+                case (int)InputType.Right:
                     return 1f;
-                case InputType.Left:
+                case (int)InputType.Left:
                     return -1f;
                 default:
                     return 0f;
@@ -137,9 +137,9 @@ public class InputManager : MonoBehaviour {
         override
         public float GetVertical() {
             switch (myConnection.inputState) {
-                case InputType.Up:
+                case (int)InputType.Up:
                     return 1f;
-                case InputType.Down:
+                case (int)InputType.Down:
                     return -1f;
                 default:
                     return 0f;
@@ -148,12 +148,12 @@ public class InputManager : MonoBehaviour {
 
         override
         public bool GetConfirmation() {
-            return (myConnection.inputState == InputType.Confirmation);
+            return (myConnection.inputState == (int)InputType.Confirmation);
         }
 
         override
         public bool GetCancel() {
-            return myConnection.inputState == InputType.Cancel;
+            return myConnection.inputState == (int)InputType.Cancel;
         }
     }
 }
