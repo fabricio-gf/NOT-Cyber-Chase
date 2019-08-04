@@ -8,9 +8,6 @@ public class NetworkInput : NetworkBehaviour
 {
 
     [SyncVar]
-    public InputType inputState = 0; //
-
-    [SyncVar]
     public string Name;
 
     [SerializeField]
@@ -25,7 +22,7 @@ public class NetworkInput : NetworkBehaviour
         base.OnStartServer();
         if(!isLocalPlayer){
             //Talvez issu não seja função do networkInput (comment by cartaz)
-            Instantiate(spaceShip, new Vector3(0,0,0), Quaternion.identity);
+            //Instantiate(spaceShip, new Vector3(0,0,0), Quaternion.identity);
             name = Name;
         }
     }
@@ -33,6 +30,9 @@ public class NetworkInput : NetworkBehaviour
     void Update() {
         if (!isLocalPlayer) {
             return;
+        }
+        if(Input.GetKey(KeyCode.W)){
+            inputState = (int)InputType.Up;
         }
         if(Input.touchCount < 1)
             return;
@@ -48,18 +48,18 @@ public class NetworkInput : NetworkBehaviour
                 float dy = endTouchPosition.y-beginTouchPosition.y;
                 if(Mathf.Abs(dx) > Mathf.Abs(dy)){
                     if(dx > 0) {
-                        inputState = InputType.Right;
+                        transform.position.x = (float)InputType.Right;
                     }
                     else {
-                        inputState = InputType.Left;
+                        transform.position.x = (float)InputType.Left;
                     }
                 }
                 else{
                     if(dy > 0) {
-                        inputState = InputType.Up;
+                        transform.position.x = (float)InputType.Up;
                     }
                     else {
-                        inputState = InputType.Down;
+                        transform.position.x = (float)InputType.Down;
                     }
                 }
             }
