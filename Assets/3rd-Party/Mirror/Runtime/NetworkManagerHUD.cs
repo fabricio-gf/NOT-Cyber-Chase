@@ -3,7 +3,6 @@
 using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.UI;
-
 namespace Mirror
 {
     [AddComponentMenu("Network/NetworkManagerHUD")]

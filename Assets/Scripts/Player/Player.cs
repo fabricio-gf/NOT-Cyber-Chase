@@ -44,6 +44,11 @@ public class Player : MonoBehaviour
     {
         GetMovementInputs();
         GetOtherInputs();
+
+        /* Matando os player para efeito de teste
+        if (Input.GetKeyDown(KeyCode.K)) {
+            PlayerSpawner.instance.RespawnPlayer(playerNumber, 3);
+        }*/
     }
 
     void GetMovementInputs()
