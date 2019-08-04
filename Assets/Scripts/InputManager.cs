@@ -124,54 +124,60 @@ public class InputManager : MonoBehaviour {
         if (!inlobby) {
             return;
         }
+        
+        if (Player0 != null && Player0.Name == connection.Name) {
+            if (connection.inputState == InputType.Cancel || connection.inputState == InputType.Down) {
+                instance.DisconnectPlayer(0);
+            }
+            return;
+        }
+        if (Player1 != null && Player1.Name == connection.Name) {
+            if (connection.inputState == InputType.Cancel || connection.inputState == InputType.Left) {
+                instance.DisconnectPlayer(1);
+            }
+            return;
+
+        }
+        if (Player2 != null && Player2.Name == connection.Name) {
+            if (connection.inputState == InputType.Cancel || connection.inputState == InputType.Up) {
+                instance.DisconnectPlayer(2);
+            }
+            return;
+        }
+        if (Player3 != null && Player3.Name == connection.Name) {
+            if (connection.inputState == InputType.Cancel || connection.inputState == InputType.Right) {
+                instance.DisconnectPlayer(3);
+            }
+            return;
+        }
+
+
+
         switch (connection.inputState) {
             case InputType.Up:
-                if (Player2 != null && Player2.Name == connection.Name) {
-                    instance.DisconnectPlayer(2);
-                } else if (Player0 == null) {
+                 if (Player0 == null) {
                     instance.ConnectPlayer( 0,new LanController(connection));
                 }
                 break;
             case InputType.Right:
-                if (Player3 != null && Player3.Name == connection.Name) {
-                    instance.DisconnectPlayer(3);
-
-                } else if(Player1 == null) {
+                 if(Player1 == null) {
                     instance.ConnectPlayer(1, new LanController(connection));
 
                 }
                 break;
             case InputType.Down:
-                if (Player0 != null && Player0.Name == connection.Name) {
-                    instance.DisconnectPlayer(0);
-
-                } else if(Player2 == null) {
+                if(Player2 == null) {
                     instance.ConnectPlayer(2, new LanController(connection));
                 }
                 break;
             case InputType.Left:
-                if (Player1 != null && Player1.Name == connection.Name) {
-                    instance.DisconnectPlayer(1);
-                } else if(Player3 == null) {
+                if(Player3 == null) {
                     instance.ConnectPlayer(3, new LanController(connection));
 
                 }
                 break;
             case InputType.Cancel:
-                if (Player0 != null && Player0.Name == connection.Name) {
-                    instance.DisconnectPlayer(0);
-
-                }
-                if (Player1 != null && Player1.Name == connection.Name) {
-                    instance.DisconnectPlayer(1);
-
-                }
-                if (Player2 != null && Player2.Name == connection.Name) {
-                    instance.DisconnectPlayer(2);
-                }
-                if (Player3 != null && Player3.Name == connection.Name) {
-                    instance.DisconnectPlayer(3);
-                }
+                
                 break;
             default:
                 break;
