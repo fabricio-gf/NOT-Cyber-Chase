@@ -39,23 +39,49 @@ public class InputManager : MonoBehaviour {
     public static void RegisterLanInput (NetworkInput connection) {
         switch (connection.inputState) {
             case InputType.Up:
-                if (Player0 == null) {
+                if (Player2.Name == connection.Name) {
+                    Player2 = null;
+                } else if (Player0 == null) {
                     Player0 = new LanController(connection);
                 }
+                
                 break;
             case InputType.Right:
-                if (Player1 == null) {
+                if (Player3.Name == connection.Name) {
+                    Player3 = null;
+                }
+                else if(Player1 == null) {
                     Player1 = new LanController(connection);
                 }
                 break;
             case InputType.Down:
-                if (Player2 == null) {
+                if (Player0.Name == connection.Name) {
+                    Player0 = null;
+                }
+                else if(Player2 == null) {
                     Player2 = new LanController(connection);
                 }
                 break;
             case InputType.Left:
-                if (Player3 == null) {
+                if (Player1.Name == connection.Name) {
+                    Player1 = null;
+                }
+                else if(Player3 == null) {
                     Player3 = new LanController(connection);
+                }
+                break;
+            case InputType.Cancel:
+                if (Player0.Name == connection.Name) {
+                    Player0 = null;
+                }
+                if (Player1.Name == connection.Name) {
+                    Player1 = null;
+                }
+                if (Player2.Name == connection.Name) {
+                    Player2 = null;
+                }
+                if (Player3.Name == connection.Name) {
+                    Player3 = null;
                 }
                 break;
             default:
@@ -80,7 +106,7 @@ public class InputManager : MonoBehaviour {
     }
 
     public abstract class PlayerController {
-        protected string name;
+        public string Name;
 
         public abstract float GetHorizontal();
         public abstract float GetVertical();
@@ -93,27 +119,41 @@ public class InputManager : MonoBehaviour {
 
         public LanController(NetworkInput connection) {
             myConnection = connection;
-            //name = myConnection.name;
+            Name = myConnection.Name;
         }
         
         override
         public float GetHorizontal() {
-            return 0f;
+            switch (myConnection.inputState) {
+                case InputType.Right:
+                    return 1f;
+                case InputType.Left:
+                    return -1f;
+                default:
+                    return 0f;
+            }
         }
 
         override
         public float GetVertical() {
-            return 0f;
+            switch (myConnection.inputState) {
+                case InputType.Up:
+                    return 1f;
+                case InputType.Down:
+                    return -1f;
+                default:
+                    return 0f;
+            }
         }
 
         override
         public bool GetConfirmation() {
-            return false;
+            return (myConnection.inputState == InputType.Confirmation);
         }
 
         override
         public bool GetCancel() {
-            return false;
+            return myConnection.inputState == InputType.Cancel;
         }
     }
 }

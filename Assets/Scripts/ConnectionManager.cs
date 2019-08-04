@@ -19,7 +19,9 @@ public class ConnectionManager : MonoBehaviour {
 
         //Dont destroy the ruler
         DontDestroyOnLoad(gameObject);
+
         //Long live the King!
+        Connections = new List<NetworkInput>();
     }
 
     /// <summary>
@@ -33,8 +35,6 @@ public class ConnectionManager : MonoBehaviour {
     public static void ExitConnection(NetworkInput connection) {
         Connections.Remove(connection);
     }
-
-   
 
     private void Update() {
         foreach (NetworkInput connection in Connections) {

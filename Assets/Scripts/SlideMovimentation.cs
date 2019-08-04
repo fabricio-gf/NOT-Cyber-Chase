@@ -5,8 +5,8 @@ using UnityEngine;
 public class SlideMovimentation : MonoBehaviour{
     public Tile ActualTile;
 
-    [SerializeField] float VerticalSpeed;
-    [SerializeField] float HorizontalSpeed;
+    [SerializeField] float VerticalSpeed = 10f;
+    [SerializeField] float HorizontalSpeed = 10f;
 
     public bool isMoving;
 

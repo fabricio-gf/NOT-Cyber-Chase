@@ -10,6 +10,9 @@ public class NetworkInput : NetworkBehaviour
     [SyncVar]
     public InputType inputState = 0; //
 
+    [SyncVar]
+    public string Name;
+
     [SerializeField]
     GameObject spaceShip;
 
@@ -21,7 +24,9 @@ public class NetworkInput : NetworkBehaviour
     {
         base.OnStartServer();
         if(!isLocalPlayer){
+            //Talvez issu não seja função do networkInput (comment by cartaz)
             Instantiate(spaceShip, new Vector3(0,0,0), Quaternion.identity);
+            name = Name;
         }
     }
 

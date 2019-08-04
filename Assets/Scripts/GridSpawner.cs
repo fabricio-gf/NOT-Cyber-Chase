@@ -6,8 +6,8 @@ public class GridSpawner : MonoBehaviour{
 
     public GameObject TilePrefab;
 
-    [SerializeField] int Rows;
-    [SerializeField] int Columns;
+    [SerializeField] int Rows = 6;
+    [SerializeField] int Columns = 9;
 
     Grid myGrid;
 
