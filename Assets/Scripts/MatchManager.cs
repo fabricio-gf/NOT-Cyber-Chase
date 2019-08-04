@@ -39,7 +39,8 @@ public class MatchManager : MonoBehaviour
         for(int i = 0; i < playerReferences.Length; i++)
         {
             //allow inputs
-            playerReferences[i].GetComponent<AutoShoot>().canShoot = true;
+            if(playerReferences[i] != null)
+                playerReferences[i].GetComponent<AutoShoot>().canShoot = true;
         }
     }
 }

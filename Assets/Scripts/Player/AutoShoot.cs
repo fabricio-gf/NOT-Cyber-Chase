@@ -14,7 +14,7 @@ public class AutoShoot : MonoBehaviour
 
     public GameObject bulletPrefab;
 
-    public Transform bulletsParent;
+    Transform bulletsParent;
 
     float currentTime;
 
@@ -24,6 +24,7 @@ public class AutoShoot : MonoBehaviour
 
     private void Start()
     {
+        bulletsParent = GameObject.Find("_Bullets").transform;
         currentTime = shootRate;
     }
 
@@ -52,5 +53,14 @@ public class AutoShoot : MonoBehaviour
     {
         spawnPositions = newFormation.positions;
         velocities = newFormation.velocities;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.green;
+        for (int i = 0; i < spawnPositions.Length; i++)
+        {
+            Gizmos.DrawWireCube(transform.position + spawnPositions[i], new Vector3(0.1f, 0.1f, 0));
+        }
     }
 }

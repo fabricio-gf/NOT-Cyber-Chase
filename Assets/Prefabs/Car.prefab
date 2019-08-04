@@ -481,7 +481,7 @@ MonoBehaviour:
   maxBombs: 3
   lives: 1
   maxLives: 3
-  shieldObject: {fileID: 0}
+  shieldObject: {fileID: 5266500733927226451}
   bombPrefab: {fileID: 0}
 --- !u!114 &599953267302665961
 MonoBehaviour:
@@ -514,11 +514,11 @@ MonoBehaviour:
   shootRate: 1
   shootMultiplier: 0
   spawnPositions:
-  - {x: 0.5, y: 1, z: 0}
-  - {x: -0.5, y: 1, z: 0}
+  - {x: -0.17, y: 0.5, z: 0}
+  - {x: 0.17, y: 0.5, z: 0}
   velocities:
-  - {x: 0, y: 1, z: 0}
-  - {x: 0, y: 1, z: 0}
+  - {x: 0, y: 10, z: 0}
+  - {x: 0, y: 10, z: 0}
   bulletPrefab: {fileID: 2132441585073479617, guid: 3c60cc227e0772549897ab819d0ae58c,
     type: 3}
   bulletsParent: {fileID: 0}
