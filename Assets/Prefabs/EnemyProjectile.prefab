@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 7693995313949699229}
   - component: {fileID: 7860859663131113318}
   m_Layer: 0
-  m_Name: PlayerProjectile
-  m_TagString: PlayerProjectile
+  m_Name: EnemyProjectile
+  m_TagString: EnemyProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: -2847682364005265004, guid: 2ada3596650812c48980dc4fd8d1d51b,
+  m_Sprite: {fileID: 3355249410230976629, guid: 2ada3596650812c48980dc4fd8d1d51b,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -222,8 +222,8 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.31764707, g: 0.8941177, b: 1, a: 1}
-      key1: {r: 0.31764707, g: 0.8941177, b: 1, a: 0}
+      key0: {r: 0.9294118, g: 0.10980393, b: 0.14117648, a: 1}
+      key1: {r: 0.9294118, g: 0.10980393, b: 0.14117648, a: 0}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}

@@ -34,7 +34,7 @@ public class MatchManager : MonoBehaviour
     public void StartMatch()
     {
         OnGameStart -= StartMatch;
-        //enemySpawner.canSpawn = true;
+        enemySpawner.canSpawn = true;
 
         for(int i = 0; i < playerReferences.Length; i++)
         {

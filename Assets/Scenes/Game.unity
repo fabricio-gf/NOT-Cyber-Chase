@@ -321,11 +321,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baccea95ebde7d34c8c8826b3db78a5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPositions: []
-  enemies: []
+  spawnPositions:
+  - {x: -4, y: 5.5, z: 0}
+  - {x: -3, y: 5.5, z: 0}
+  - {x: -2, y: 5.5, z: 0}
+  - {x: -1, y: 5.5, z: 0}
+  - {x: 0, y: 5.5, z: 0}
+  - {x: 1, y: 5.5, z: 0}
+  - {x: 2, y: 5.5, z: 0}
+  - {x: 3, y: 5.5, z: 0}
+  - {x: 4, y: 5.5, z: 0}
+  enemies:
+  - {fileID: 2296233573877492402, guid: 4549f979208b43a42874c6490290a46b, type: 3}
   enemyParent: {fileID: 636443276}
-  spawnRate: 0
-  difficultyMultiplier: 0
+  spawnRate: 3
+  difficultyMultiplier: 0.01
   canSpawn: 0
 --- !u!1001 &9984012
 PrefabInstance:
@@ -1899,7 +1909,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 762949948}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.18, y: 5.5, z: 81.458984}
+  m_LocalPosition: {x: -0.18, y: 7.62, z: 81.458984}
   m_LocalScale: {x: 22.03674, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

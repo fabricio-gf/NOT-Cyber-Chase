@@ -10,14 +10,15 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if (collision.CompareTag("PlayerProjectile"))
         {
+            Destroy(collision.gameObject);
             if(lives > 0)
             {
                 lives--;
             }
             else
             {
-                //spawn explosion
-
+                print(ExplosionSpawner.instance);
+                ExplosionSpawner.instance.SpawnExplosion(transform.position);
                 FindObjectOfType<PowerupSpawner>().CheckPowerupSpawn(transform.position);
                 Destroy(gameObject);
             }

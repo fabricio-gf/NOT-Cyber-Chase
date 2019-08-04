@@ -10,10 +10,9 @@ public class ExplosionSpawner : MonoBehaviour
 
     public Transform explosionParent;
 
-
     private void Awake()
     {
-        if (instance = null)
+        if (instance == null)
         {
             instance = this;
         }

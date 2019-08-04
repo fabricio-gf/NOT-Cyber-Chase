@@ -15,15 +15,25 @@ public class EnemySpawner : MonoBehaviour
     float currentTime;
     int randomIndex;
 
+    float diffCount = 0;
+
     private void Start()
     {
         currentTime = spawnRate;
+        diffCount = 0;
     }
 
     void Update()
     {
         if (canSpawn)
         {
+            diffCount += Time.deltaTime;
+            if (diffCount >= 1f)
+            {
+                spawnRate -= difficultyMultiplier;
+                diffCount -= 1;
+            }
+
             currentTime -= Time.deltaTime;
 
             if(currentTime <= 0)

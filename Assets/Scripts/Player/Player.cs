@@ -133,9 +133,11 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("EnemyProjectile"))
+        if (collision.CompareTag("EnemyProjectile") || collision.CompareTag("Enemy"))
         {
             Destroy(collision.gameObject);
+            if (collision.CompareTag("Enemy"))
+                ExplosionSpawner.instance.SpawnExplosion(collision.transform.position);
             TakeDamage();
         }
     }

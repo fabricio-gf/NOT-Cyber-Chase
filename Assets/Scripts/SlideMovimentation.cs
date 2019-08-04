@@ -56,7 +56,6 @@ public class SlideMovimentation : MonoBehaviour{
             isMoving = false;
             return;
         }
-        Debug.Log("Direction" + Direction);
         float speed;
         if (Mathf.Abs(Direction.x) > Mathf.Abs(Direction.y)) {
             speed = HorizontalSpeed;

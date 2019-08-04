@@ -96,7 +96,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxVelocity: 1
   minVelocity: 0.1
-  moveSpeed: 0
+  moveSpeed: 1
   myType: 0
 --- !u!61 &-155111290074393402
 BoxCollider2D:
