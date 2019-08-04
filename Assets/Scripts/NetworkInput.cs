@@ -7,6 +7,8 @@ using Mirror;
 public class NetworkInput : NetworkBehaviour
 {
 
+    public int inputState = 0; //
+
     [SyncVar]
     public string Name;
 
@@ -22,7 +24,7 @@ public class NetworkInput : NetworkBehaviour
         base.OnStartServer();
         if(!isLocalPlayer){
             //Talvez issu não seja função do networkInput (comment by cartaz)
-            //Instantiate(spaceShip, new Vector3(0,0,0), Quaternion.identity);
+            Instantiate(spaceShip, new Vector3(0,0,0), Quaternion.identity);
             name = Name;
         }
     }
@@ -32,7 +34,7 @@ public class NetworkInput : NetworkBehaviour
             return;
         }
         if(Input.GetKey(KeyCode.W)){
-            inputState = (int)InputType.Up;
+            CmdUpdateState((int)InputType.Up);
         }
         if(Input.touchCount < 1)
             return;
@@ -48,23 +50,29 @@ public class NetworkInput : NetworkBehaviour
                 float dy = endTouchPosition.y-beginTouchPosition.y;
                 if(Mathf.Abs(dx) > Mathf.Abs(dy)){
                     if(dx > 0) {
-                        transform.position.x = (float)InputType.Right;
+                        CmdUpdateState((int)InputType.Right);
                     }
                     else {
-                        transform.position.x = (float)InputType.Left;
+                        CmdUpdateState((int)InputType.Left);
                     }
                 }
                 else{
                     if(dy > 0) {
-                        transform.position.x = (float)InputType.Up;
+                        CmdUpdateState((int)InputType.Up);
                     }
                     else {
-                        transform.position.x = (float)InputType.Down;
+                        CmdUpdateState((int)InputType.Down);
                     }
                 }
             }
 
         }
+    }
+
+        [Command]
+    void CmdUpdateState(int newState)
+    {
+        inputState = newState;
     }
 
 
