@@ -29,7 +29,7 @@ public class InputManager : MonoBehaviour {
             Destroy(gameObject);
 
         //Dont destroy the ruler
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
     }
 
     // Start is called before the first frame update
