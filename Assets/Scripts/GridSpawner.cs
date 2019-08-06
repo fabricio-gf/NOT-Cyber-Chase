@@ -12,8 +12,9 @@ public class GridSpawner : MonoBehaviour{
     Grid myGrid;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        
         Tile[,] matrix = new Tile[Rows, Columns]; 
         
         if (myGrid == null) {

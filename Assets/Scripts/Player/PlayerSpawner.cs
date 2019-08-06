@@ -82,6 +82,8 @@ public class PlayerSpawner : MonoBehaviour
             if (!spawnTiles[i].occupied)
             {
                 obj = Instantiate(playerPrefabs[i], spawnPositions[i], Quaternion.identity, playerParent);
+                EmergencyInput.instance.ResetFirst();
+
                 obj.GetComponent<Player>().playerNumber = index;
                 obj.GetComponent<SlideMovimentation>().canMove = true;
                 obj.GetComponent<SlideMovimentation>().ActualTile = spawnTiles[i];

@@ -5800,9 +5800,9 @@ MonoBehaviour:
   spawnTiles: []
   playerPrefabs:
   - {fileID: 8870486199432019841, guid: 042f7da9c64c9f74f922f400375a6ca2, type: 3}
-  - {fileID: 8870486199432019841, guid: 3f8acf43ec7e33c4bbb50a7045e4b4c9, type: 3}
-  - {fileID: 8870486199432019841, guid: b9f1b9d0f9321924d8b559d4a45001a7, type: 3}
-  - {fileID: 8870486199432019841, guid: 986688eb0b5d1fc40bc5875517b44e82, type: 3}
+  - {fileID: 8870486199432019841, guid: 042f7da9c64c9f74f922f400375a6ca2, type: 3}
+  - {fileID: 8870486199432019841, guid: 042f7da9c64c9f74f922f400375a6ca2, type: 3}
+  - {fileID: 8870486199432019841, guid: 042f7da9c64c9f74f922f400375a6ca2, type: 3}
   playerParent: {fileID: 370620154}
   gridSpawner: {fileID: 2018356702}
 --- !u!1 &1733639170

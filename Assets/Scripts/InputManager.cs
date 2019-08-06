@@ -48,11 +48,6 @@ public class InputManager : MonoBehaviour {
 
     int connectedPlayers = 0;
 
-    void Start() {
-
-    }
-
-
     public void ConnectPlayer(int index, PlayerController controller)
     {
         connectedPlayers++;

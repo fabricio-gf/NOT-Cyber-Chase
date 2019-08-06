@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
     [Header("References")]
     public GameObject shieldObject;
     public GameObject bombPrefab;
-    SlideMovimentation movementScript;
+    public SlideMovimentation movementScript;
 
     [System.Serializable] public struct ShotFormation
     {
@@ -42,8 +42,8 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        GetMovementInputs();
-        GetOtherInputs();
+        //GetMovementInputs();
+        //GetOtherInputs();
 
         /* Matando os player para efeito de teste
         if (Input.GetKeyDown(KeyCode.K)) {

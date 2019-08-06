@@ -10,6 +10,26 @@ public class MenuController : MonoBehaviour
 
     public GameObject[] screens;
 
+    EmergencyInput ei;
+
+
+    public GameObject[] playerTokens;
+    public GameObject[] arrows;
+    public GameObject readyButton;
+    
+
+    private void Awake()
+    {
+        Time.timeScale = 1;
+        EmergencyInput.instance.ResetNotThisScene();
+
+        ei = GameObject.FindGameObjectWithTag("Emergency").GetComponent<EmergencyInput>();
+        ei.playerTokens = playerTokens;
+        ei.arrows = arrows;
+        ei.readyButton = readyButton;
+
+    }
+
     public void ChangeScreen(int screen)
     {
         switch (screen)

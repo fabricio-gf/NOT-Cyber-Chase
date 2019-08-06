@@ -30,12 +30,18 @@ public class MatchManager : MonoBehaviour
             Destroy(gameObject);
         }
 
+        Time.timeScale = 1;
+
+        //EmergencyInput emergencyInput = GameObject.Find("@EmergencyInput").GetComponent<EmergencyInput>();
+        EmergencyInput.instance.ResetFirst();
+        connectedPlayers = EmergencyInput.instance.playerConnected;
         for(int i = 0; i < 4; i++)
         {
-            if(InputManager.GetPlayerInput(i) != null)
+            /*if(InputManager.GetPlayerInput(i) != null)
             {
                 connectedPlayers[i] = true;
-            }
+            }*/
+            
         }
     }
 

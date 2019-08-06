@@ -1020,7 +1020,7 @@ GameObject:
   - component: {fileID: 654620394}
   - component: {fileID: 654620393}
   m_Layer: 0
-  m_Name: '@LevalLoader'
+  m_Name: '@LevelLoader'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1128,61 +1128,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 666899383}
   m_CullTransparentMesh: 0
---- !u!1 &751447823
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 751447825}
-  - component: {fileID: 751447824}
-  m_Layer: 0
-  m_Name: '@EmergencyInput'
-  m_TagString: Emergency
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &751447824
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 751447823}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 553bed147789f804b86283a2cd32d891, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerTokens:
-  - {fileID: 1044422281}
-  - {fileID: 304439838}
-  - {fileID: 1862029994}
-  - {fileID: 1265664910}
-  arrows:
-  - {fileID: 1725738763}
-  - {fileID: 1436015507}
-  - {fileID: 1330281985}
-  - {fileID: 1029650012}
-  readyButton: {fileID: 951391634}
-  playerConnected: 00000000
---- !u!4 &751447825
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 751447823}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.3749754, y: -0.45452183, z: 102.67578}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &836023016
 GameObject:
   m_ObjectHideFlags: 0
@@ -1413,17 +1358,6 @@ MonoBehaviour:
   screens:
   - {fileID: 1161889652}
   - {fileID: 49047204}
-  playerTokens:
-  - {fileID: 1044422281}
-  - {fileID: 304439838}
-  - {fileID: 1862029994}
-  - {fileID: 1265664910}
-  arrows:
-  - {fileID: 1044422281}
-  - {fileID: 1436015507}
-  - {fileID: 1330281985}
-  - {fileID: 1029650012}
-  readyButton: {fileID: 951391634}
 --- !u!4 &927780434
 Transform:
   m_ObjectHideFlags: 0
@@ -1532,8 +1466,8 @@ MonoBehaviour:
           m_StringArgument: GameServer
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 751447824}
-        m_MethodName: NotThisScene
+      - m_Target: {fileID: 1563444007}
+        m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2479,7 +2413,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1402797324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2835,7 +2769,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1563444007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2961,17 +2895,6 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 1
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 751447824}
-        m_MethodName: GetInputs
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -3192,7 +3115,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1683953761
 MonoBehaviour:
   m_ObjectHideFlags: 0
